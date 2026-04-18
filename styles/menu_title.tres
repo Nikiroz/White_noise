@@ -1,7 +1,11 @@
 [gd_resource type="LabelSettings" format=3 uid="uid://xnxv2aha4is4"]
 
+[ext_resource type="FontFile" uid="uid://benbcr3el8ije" path="res://font/Menlo-Regular.ttf" id="1_hitdd"]
+
 [resource]
-font_size = 32
-font_color = Color(0.96862745, 0.89411765, 0.8039216, 1)
+line_spacing = -2.0
+font = ExtResource("1_hitdd")
+font_size = 10
+font_color = Color(0.4117647, 0.7921569, 0.41960785, 1)
 stacked_shadow_count = 1
 stacked_shadow_0/offset = Vector2(1, 1)

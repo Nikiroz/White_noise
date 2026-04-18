@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cy1ttaw3mrd83"
+path="res://.godot/imported/07 Blizzard_Snow melting_wind_MS stereo.mp3-a9bf31aa3fdb751b2f7cb1afd702c54b.mp3str"
+
+[deps]
+
+source_file="res://sounds/07 Blizzard_Snow melting_wind_MS stereo.mp3"
+dest_files=["res://.godot/imported/07 Blizzard_Snow melting_wind_MS stereo.mp3-a9bf31aa3fdb751b2f7cb1afd702c54b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

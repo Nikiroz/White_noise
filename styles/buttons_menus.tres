@@ -1,0 +1,55 @@
+[gd_resource type="Theme" format=3 uid="uid://dydnnht3t578u"]
+
+[ext_resource type="FontFile" uid="uid://vcx3t2gqfd6" path="res://font/PixelOperator-Bold.ttf" id="1_03ego"]
+[ext_resource type="Texture2D" uid="uid://bs4akck6r0d3d" path="res://sprites/blank_button_off_crt.png" id="2_03ego"]
+[ext_resource type="Texture2D" uid="uid://brqt8blwrb1i8" path="res://sprites/blank_button_crt.png" id="3_mqb4x"]
+[ext_resource type="Texture2D" uid="uid://dv2onvqj660ka" path="res://sprites/slider.png" id="4_mqb4x"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f5qsh"]
+texture = ExtResource("2_03ego")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_waybc"]
+texture = ExtResource("3_mqb4x")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i2ujt"]
+texture = ExtResource("2_03ego")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_03ego"]
+texture = ExtResource("2_03ego")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+
+[resource]
+Button/colors/font_color = Color(0.4117647, 0.7921569, 0.41960785, 1)
+Button/colors/font_focus_color = Color(0.105882354, 0.11372549, 0.09411765, 1)
+Button/colors/font_hover_color = Color(0.105882354, 0.11372549, 0.09411765, 1)
+Button/colors/font_hover_pressed_color = Color(0.105882354, 0.11372549, 0.09411765, 1)
+Button/colors/font_pressed_color = Color(0.105882354, 0.11372549, 0.09411765, 1)
+Button/font_sizes/font_size = 22
+Button/fonts/font = ExtResource("1_03ego")
+Button/styles/hover = SubResource("StyleBoxTexture_f5qsh")
+Button/styles/normal = SubResource("StyleBoxTexture_waybc")
+Button/styles/pressed = SubResource("StyleBoxTexture_i2ujt")
+HSlider/icons/grabber = ExtResource("4_mqb4x")
+HSlider/icons/grabber_disabled = ExtResource("4_mqb4x")
+HSlider/icons/grabber_highlight = ExtResource("4_mqb4x")
+HSlider/styles/grabber_area = SubResource("StyleBoxTexture_03ego")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_03ego")
+Label/colors/font_color = Color(0.4117647, 0.7921569, 0.41960785, 1)
+Label/font_sizes/font_size = 20
+Label/fonts/font = ExtResource("1_03ego")
+VBoxContainer/constants/separation = 12
