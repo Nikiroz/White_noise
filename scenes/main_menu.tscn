@@ -4,15 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://b372pgfpqq4uj" path="res://sprites/ludum.png" id="2_wu84c"]
 [ext_resource type="Theme" uid="uid://dusbxqn3cho4s" path="res://styles/buttons.tres" id="3_8ln24"]
 [ext_resource type="StyleBox" uid="uid://2yud64nvfs3x" path="res://styles/box.tres" id="3_oa1go"]
-[ext_resource type="Shader" uid="uid://usqoky8ohu4d" path="res://shaders/transition.gdshader" id="3_wu84c"]
 [ext_resource type="FontFile" uid="uid://vcx3t2gqfd6" path="res://font/PixelOperator-Bold.ttf" id="4_rtw2f"]
+[ext_resource type="Script" uid="uid://v8qb8pdqch41" path="res://scripts/play.gd" id="5_8egab"]
 [ext_resource type="Texture2D" uid="uid://da8fphhq731aa" path="res://sprites/ui_blank.png" id="8_5dd4i"]
 [ext_resource type="LabelSettings" uid="uid://dg61qe0vvvjjj" path="res://styles/hearder.tres" id="8_lgwnu"]
 [ext_resource type="Theme" uid="uid://dydnnht3t578u" path="res://styles/buttons_menus.tres" id="9_5dd4i"]
-[ext_resource type="Script" uid="uid://bm6o0m0ki815" path="res://scripts/pauseMenu.gd" id="9_lgwnu"]
 [ext_resource type="Script" uid="uid://dxid61kxg1jew" path="res://scripts/settings.gd" id="10_lgwnu"]
-[ext_resource type="AudioStream" uid="uid://cy1ttaw3mrd83" path="res://sounds/07 Blizzard_Snow melting_wind_MS stereo.mp3" id="12_flqon"]
-[ext_resource type="Script" uid="uid://cbroj01comkeo" path="res://scripts/ambient.gd" id="13_rcqid"]
+[ext_resource type="Script" uid="uid://dhqpjrrleajcq" path="res://scripts/setting_button.gd" id="11_a8gd2"]
+[ext_resource type="Script" uid="uid://blhssw174lbbt" path="res://scripts/restart.gd" id="12_1ajci"]
+[ext_resource type="Script" uid="uid://cty874etsje8b" path="res://scripts/back.gd" id="12_j7ex8"]
+[ext_resource type="Shader" uid="uid://dmuc4hai33lql" path="res://shaders/fade_shader.gdshader" id="16_5pajh"]
 
 [sub_resource type="Gradient" id="Gradient_l6cm7"]
 colors = PackedColorArray(0, 0, 0, 0.7490196, 0, 0, 0, 0)
@@ -21,6 +22,13 @@ colors = PackedColorArray(0, 0, 0, 0.7490196, 0, 0, 0, 0)
 gradient = SubResource("Gradient_l6cm7")
 fill_from = Vector2(1, 0.9)
 fill_to = Vector2(1, 0.5)
+
+[sub_resource type="GDScript" id="GDScript_8egab"]
+script/source = "extends Menu_button
+func _on_pressed() -> void:
+	super();
+	MenuController._show_settings()
+"
 
 [sub_resource type="Gradient" id="Gradient_tbmy8"]
 offsets = PackedFloat32Array(0, 0.31343284, 0.32089552, 0.6119403, 1)
@@ -65,39 +73,32 @@ texture = SubResource("GradientTexture2D_5dd4i")
 [sub_resource type="Theme" id="Theme_5dd4i"]
 Panel/styles/panel = SubResource("StyleBoxTexture_lgwnu")
 
+[sub_resource type="GDScript" id="GDScript_7b55j"]
+script/source = "extends VBoxContainer
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+func _on_play_pressed()-> void:
+	get_tree().paused = true
+"
+
 [sub_resource type="Theme" id="Theme_jk1qb"]
 VBoxContainer/constants/separation = 8
 
-[sub_resource type="Gradient" id="Gradient_8ln24"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_rtw2f"]
-gradient = SubResource("Gradient_8ln24")
-
-[sub_resource type="Gradient" id="Gradient_oa1go"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_tbmy8"]
-gradient = SubResource("Gradient_oa1go")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jk1qb"]
-shader = ExtResource("3_wu84c")
-shader_parameter/from_tex = SubResource("GradientTexture1D_rtw2f")
-shader_parameter/to_tex = SubResource("GradientTexture1D_tbmy8")
-shader_parameter/progress = 0.370000017575
-shader_parameter/density = 100.0
-shader_parameter/boundary_size = 0.6
-shader_parameter/antialiasing_intensity = 2.0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j7ex8"]
+shader = ExtResource("16_5pajh")
+shader_parameter/fade = 1.0
 
 [sub_resource type="Gradient" id="Gradient_5dd4i"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_lgwnu"]
 gradient = SubResource("Gradient_5dd4i")
 
 [node name="Control" type="Control" unique_id=166247087]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -106,6 +107,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MainMenuBg" type="Panel" parent="." unique_id=1183760621]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -169,11 +171,13 @@ theme = ExtResource("3_8ln24")
 layout_mode = 2
 theme = ExtResource("3_8ln24")
 text = "Play"
+script = ExtResource("5_8egab")
 
 [node name="setting" type="Button" parent="MainMenuBg/MainMenu/VBoxContainer" unique_id=432941895]
 layout_mode = 2
 theme = ExtResource("3_8ln24")
 text = "Setting"
+script = SubResource("GDScript_8egab")
 
 [node name="GameName" type="Panel" parent="MainMenuBg" unique_id=1581671170]
 layout_mode = 1
@@ -198,7 +202,8 @@ theme_override_font_sizes/font_size = 60
 text = "The Game"
 label_settings = SubResource("LabelSettings_oa1go")
 
-[node name="SubMenu" type="TextureRect" parent="." unique_id=1134957878]
+[node name="MenuContainer" type="TextureRect" parent="." unique_id=1134957878]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -207,7 +212,8 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_flqon")
 
-[node name="PauseShadow" type="Panel" parent="SubMenu" unique_id=1419112957]
+[node name="PauseContainer" type="Panel" parent="MenuContainer" unique_id=1419112957]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -222,7 +228,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_5dd4i")
 
-[node name="MarginContainer" type="MarginContainer" parent="SubMenu/PauseShadow" unique_id=1389664166]
+[node name="MarginContainer" type="MarginContainer" parent="MenuContainer/PauseContainer" unique_id=1389664166]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -234,7 +240,7 @@ theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
-[node name="Crt" type="NinePatchRect" parent="SubMenu/PauseShadow/MarginContainer" unique_id=333745361]
+[node name="Crt" type="NinePatchRect" parent="MenuContainer/PauseContainer/MarginContainer" unique_id=333745361]
 layout_mode = 2
 texture = ExtResource("8_5dd4i")
 region_rect = Rect2(0, 0, 60.014378, 60.06906)
@@ -245,7 +251,7 @@ patch_margin_bottom = 12
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="SubMenu/PauseShadow/MarginContainer/Crt" unique_id=1814718553]
+[node name="MarginContainer" type="MarginContainer" parent="MenuContainer/PauseContainer/MarginContainer/Crt" unique_id=1814718553]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -257,11 +263,11 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SubMenu/PauseShadow/MarginContainer/Crt/MarginContainer" unique_id=262624368]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/PauseContainer/MarginContainer/Crt/MarginContainer" unique_id=262624368]
 layout_mode = 2
-script = ExtResource("9_lgwnu")
+script = SubResource("GDScript_7b55j")
 
-[node name="Settings" type="Label" parent="SubMenu/PauseShadow/MarginContainer/Crt/MarginContainer/VBoxContainer" unique_id=443078471]
+[node name="Settings" type="Label" parent="MenuContainer/PauseContainer/MarginContainer/Crt/MarginContainer/VBoxContainer" unique_id=443078471]
 layout_mode = 2
 theme = ExtResource("3_8ln24")
 text = "░█▀█░█▀█░█░█░█▀▀░█▀▀
@@ -270,28 +276,33 @@ text = "░█▀█░█▀█░█░█░█▀▀░█▀▀
 label_settings = ExtResource("8_lgwnu")
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SubMenu/PauseShadow/MarginContainer/Crt/MarginContainer/VBoxContainer" unique_id=611743048]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/PauseContainer/MarginContainer/Crt/MarginContainer/VBoxContainer" unique_id=611743048]
 layout_mode = 2
 size_flags_vertical = 6
 theme = SubResource("Theme_jk1qb")
 
-[node name="play" type="Button" parent="SubMenu/PauseShadow/MarginContainer/Crt/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1982463136]
+[node name="resume" type="Button" parent="MenuContainer/PauseContainer/MarginContainer/Crt/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1982463136]
 layout_mode = 2
 theme = ExtResource("9_5dd4i")
 text = "Resume"
+script = ExtResource("12_j7ex8")
 
-[node name="setting" type="Button" parent="SubMenu/PauseShadow/MarginContainer/Crt/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1301403966]
+[node name="setting" type="Button" parent="MenuContainer/PauseContainer/MarginContainer/Crt/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1301403966 node_paths=PackedStringArray("_container")]
 layout_mode = 2
 theme = ExtResource("9_5dd4i")
 text = "Options"
+script = ExtResource("11_a8gd2")
+_container = NodePath("../../../../../../../SettingsContainer")
 
-[node name="exit" type="Button" parent="SubMenu/PauseShadow/MarginContainer/Crt/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1447785251]
+[node name="exit" type="Button" parent="MenuContainer/PauseContainer/MarginContainer/Crt/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1447785251]
 layout_mode = 2
 theme = ExtResource("9_5dd4i")
 text = "Quit to menu
 "
+script = ExtResource("12_1ajci")
 
-[node name="SettingsShadow" type="Panel" parent="SubMenu" unique_id=1406621257]
+[node name="SettingsContainer" type="Panel" parent="MenuContainer" unique_id=1406621257]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -307,9 +318,10 @@ grow_vertical = 2
 theme = SubResource("Theme_5dd4i")
 script = ExtResource("10_lgwnu")
 master_slider_path = NodePath("MarginContainer/Crt/MarginContainer/VBoxContainer/VBoxContainer/MasterSlider")
+sfx_slider_path = NodePath("MarginContainer/Crt/MarginContainer/VBoxContainer/VBoxContainer5/SfxSlider")
 music_slider_path = NodePath("MarginContainer/Crt/MarginContainer/VBoxContainer/VBoxContainer2/MusicSlider")
 
-[node name="MarginContainer" type="MarginContainer" parent="SubMenu/SettingsShadow" unique_id=609985023]
+[node name="MarginContainer" type="MarginContainer" parent="MenuContainer/SettingsContainer" unique_id=609985023]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -321,7 +333,7 @@ theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
-[node name="Crt" type="NinePatchRect" parent="SubMenu/SettingsShadow/MarginContainer" unique_id=623012744]
+[node name="Crt" type="NinePatchRect" parent="MenuContainer/SettingsContainer/MarginContainer" unique_id=623012744]
 layout_mode = 2
 texture = ExtResource("8_5dd4i")
 region_rect = Rect2(0, 0, 60.014378, 60.06906)
@@ -332,7 +344,7 @@ patch_margin_bottom = 12
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="SubMenu/SettingsShadow/MarginContainer/Crt" unique_id=1625804218]
+[node name="MarginContainer" type="MarginContainer" parent="MenuContainer/SettingsContainer/MarginContainer/Crt" unique_id=1625804218]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -344,10 +356,10 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SubMenu/SettingsShadow/MarginContainer/Crt/MarginContainer" unique_id=1623270004]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/SettingsContainer/MarginContainer/Crt/MarginContainer" unique_id=1623270004]
 layout_mode = 2
 
-[node name="Settings" type="Label" parent="SubMenu/SettingsShadow/MarginContainer/Crt/MarginContainer/VBoxContainer" unique_id=174242165]
+[node name="Settings" type="Label" parent="MenuContainer/SettingsContainer/MarginContainer/Crt/MarginContainer/VBoxContainer" unique_id=174242165]
 layout_mode = 2
 theme = ExtResource("3_8ln24")
 text = "░█▀▀░█▀▀░▀█▀░▀█▀░▀█▀░█▀█░█▀▀░█▀▀
@@ -356,60 +368,79 @@ text = "░█▀▀░█▀▀░▀█▀░▀█▀░▀█▀░█▀█
 label_settings = ExtResource("8_lgwnu")
 horizontal_alignment = 1
 
-[node name="VBoxContainer4" type="VBoxContainer" parent="SubMenu/SettingsShadow/MarginContainer/Crt/MarginContainer/VBoxContainer" unique_id=1551175358]
+[node name="VBoxContainer4" type="VBoxContainer" parent="MenuContainer/SettingsContainer/MarginContainer/Crt/MarginContainer/VBoxContainer" unique_id=1551175358]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SubMenu/SettingsShadow/MarginContainer/Crt/MarginContainer/VBoxContainer" unique_id=793286621]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/SettingsContainer/MarginContainer/Crt/MarginContainer/VBoxContainer" unique_id=793286621]
 layout_mode = 2
 
-[node name="Sfx" type="Label" parent="SubMenu/SettingsShadow/MarginContainer/Crt/MarginContainer/VBoxContainer/VBoxContainer" unique_id=2068088636]
+[node name="Master" type="Label" parent="MenuContainer/SettingsContainer/MarginContainer/Crt/MarginContainer/VBoxContainer/VBoxContainer" unique_id=2068088636]
 layout_mode = 2
 theme = ExtResource("9_5dd4i")
 text = "Master volume"
 
-[node name="MasterSlider" type="HSlider" parent="SubMenu/SettingsShadow/MarginContainer/Crt/MarginContainer/VBoxContainer/VBoxContainer" unique_id=717888413]
+[node name="MasterSlider" type="HSlider" parent="MenuContainer/SettingsContainer/MarginContainer/Crt/MarginContainer/VBoxContainer/VBoxContainer" unique_id=717888413]
 layout_mode = 2
 theme = ExtResource("9_5dd4i")
 max_value = 1.0
-step = 0.1
+step = 0.05
 value = 1.0
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="SubMenu/SettingsShadow/MarginContainer/Crt/MarginContainer/VBoxContainer" unique_id=386453100]
+[node name="VBoxContainer5" type="VBoxContainer" parent="MenuContainer/SettingsContainer/MarginContainer/Crt/MarginContainer/VBoxContainer" unique_id=2040476138]
 layout_mode = 2
 
-[node name="Music" type="Label" parent="SubMenu/SettingsShadow/MarginContainer/Crt/MarginContainer/VBoxContainer/VBoxContainer2" unique_id=1504456218]
+[node name="Sfx" type="Label" parent="MenuContainer/SettingsContainer/MarginContainer/Crt/MarginContainer/VBoxContainer/VBoxContainer5" unique_id=621713633]
+layout_mode = 2
+theme = ExtResource("9_5dd4i")
+text = "Sound effects"
+
+[node name="SfxSlider" type="HSlider" parent="MenuContainer/SettingsContainer/MarginContainer/Crt/MarginContainer/VBoxContainer/VBoxContainer5" unique_id=1599678154]
+layout_mode = 2
+theme = ExtResource("9_5dd4i")
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuContainer/SettingsContainer/MarginContainer/Crt/MarginContainer/VBoxContainer" unique_id=386453100]
+layout_mode = 2
+
+[node name="Music" type="Label" parent="MenuContainer/SettingsContainer/MarginContainer/Crt/MarginContainer/VBoxContainer/VBoxContainer2" unique_id=1504456218]
 layout_mode = 2
 theme = ExtResource("9_5dd4i")
 text = "Music"
 
-[node name="MusicSlider" type="HSlider" parent="SubMenu/SettingsShadow/MarginContainer/Crt/MarginContainer/VBoxContainer/VBoxContainer2" unique_id=2136628878]
+[node name="MusicSlider" type="HSlider" parent="MenuContainer/SettingsContainer/MarginContainer/Crt/MarginContainer/VBoxContainer/VBoxContainer2" unique_id=2136628878]
 layout_mode = 2
 theme = ExtResource("9_5dd4i")
-value = 50.0
+max_value = 1.0
+step = 0.05
+value = 1.0
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="SubMenu/SettingsShadow/MarginContainer/Crt/MarginContainer/VBoxContainer" unique_id=821087134]
+[node name="VBoxContainer3" type="VBoxContainer" parent="MenuContainer/SettingsContainer/MarginContainer/Crt/MarginContainer/VBoxContainer" unique_id=821087134]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Back" type="Button" parent="SubMenu/SettingsShadow/MarginContainer/Crt/MarginContainer/VBoxContainer" unique_id=1946039071]
+[node name="Back" type="Button" parent="MenuContainer/SettingsContainer/MarginContainer/Crt/MarginContainer/VBoxContainer" unique_id=1946039071]
 layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("9_5dd4i")
 text = "Back"
+script = ExtResource("12_j7ex8")
 
 [node name="Fade" type="TextureRect" parent="." unique_id=909485916]
-material = SubResource("ShaderMaterial_jk1qb")
-layout_mode = 0
-offset_left = 2.0
-offset_top = -8.0
-offset_right = 956.0
-offset_bottom = 534.0
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_j7ex8")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("GradientTexture1D_lgwnu")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=235461673]
-stream = ExtResource("12_flqon")
-script = ExtResource("13_rcqid")
-
-[connection signal="pressed" from="SubMenu/PauseShadow/MarginContainer/Crt/MarginContainer/VBoxContainer/VBoxContainer/play" to="SubMenu/PauseShadow/MarginContainer/Crt/MarginContainer/VBoxContainer" method="_on_play_pressed"]
+[node name="UiPlayer" type="AudioStreamPlayer" parent="." unique_id=49969641]
+unique_name_in_owner = true
+process_mode = 3
