@@ -1,30 +1,50 @@
 [gd_scene format=3 uid="uid://dlxcemoturann"]
 
-[ext_resource type="Shader" uid="uid://cqt0xe5nn1b6u" path="res://shaders/offset.gdshader" id="1_bqqt6"]
-[ext_resource type="Texture2D" uid="uid://cfsljeg2r0aa4" path="res://sprites/bg.png" id="1_l6cm7"]
+[ext_resource type="Texture2D" uid="uid://b667p8dyg2mhn" path="res://references/main_menu.png" id="1_bqqt6"]
 [ext_resource type="PackedScene" uid="uid://dip4oymwc3ulh" path="res://scenes/menu_control.tscn" id="2_ekxnf"]
+[ext_resource type="Texture2D" uid="uid://b372pgfpqq4uj" path="res://sprites/ludum.png" id="2_wu84c"]
+[ext_resource type="Theme" uid="uid://dusbxqn3cho4s" path="res://styles/buttons.tres" id="3_8ln24"]
+[ext_resource type="StyleBox" uid="uid://2yud64nvfs3x" path="res://styles/box.tres" id="3_oa1go"]
 [ext_resource type="Shader" uid="uid://usqoky8ohu4d" path="res://shaders/transition.gdshader" id="3_wu84c"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ekxnf"]
-shader = ExtResource("1_bqqt6")
-shader_parameter/speed = Vector2(-0.15, 0.25)
+[ext_resource type="FontFile" uid="uid://vcx3t2gqfd6" path="res://font/PixelOperator-Bold.ttf" id="4_rtw2f"]
 
 [sub_resource type="Gradient" id="Gradient_l6cm7"]
 colors = PackedColorArray(0, 0, 0, 0.7490196, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ekxnf"]
 gradient = SubResource("Gradient_l6cm7")
-fill_from = Vector2(1, 1)
+fill_from = Vector2(1, 0.9)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_tbmy8"]
+offsets = PackedFloat32Array(0, 0.31343284, 0.32089552, 0.6119403, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.3989968, 0, 0, 0, 0.49019608, 0, 0, 0, 0.49019608, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jk1qb"]
+gradient = SubResource("Gradient_tbmy8")
+fill_from = Vector2(0.97979796, 1)
+fill_to = Vector2(1, 0.22222222)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5dd4i"]
+texture = SubResource("GradientTexture2D_jk1qb")
+
+[sub_resource type="LabelSettings" id="LabelSettings_oa1go"]
+font = ExtResource("4_rtw2f")
+font_size = 55
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 14
+shadow_color = Color(0.07058824, 0.09803922, 0.16470589, 1)
 
 [sub_resource type="Gradient" id="Gradient_8ln24"]
-offsets = PackedFloat32Array(0, 0.5, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_rtw2f"]
 gradient = SubResource("Gradient_8ln24")
 
 [sub_resource type="Gradient" id="Gradient_oa1go"]
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0)
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_tbmy8"]
 gradient = SubResource("Gradient_oa1go")
@@ -33,8 +53,8 @@ gradient = SubResource("Gradient_oa1go")
 shader = ExtResource("3_wu84c")
 shader_parameter/from_tex = SubResource("GradientTexture1D_rtw2f")
 shader_parameter/to_tex = SubResource("GradientTexture1D_tbmy8")
-shader_parameter/progress = 0.0
-shader_parameter/density = 36.0
+shader_parameter/progress = 0.370000017575
+shader_parameter/density = 100.0
 shader_parameter/boundary_size = 0.6
 shader_parameter/antialiasing_intensity = 2.0
 
@@ -61,14 +81,13 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Bg" type="TextureRect" parent="MainMenuBg" unique_id=565672521]
-material = SubResource("ShaderMaterial_ekxnf")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_l6cm7")
+texture = ExtResource("1_bqqt6")
 stretch_mode = 1
 
 [node name="Gradient" type="TextureRect" parent="MainMenuBg" unique_id=187243331]
@@ -80,12 +99,82 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_ekxnf")
 
-[node name="TextureRect" type="TextureRect" parent="MainMenuBg" unique_id=909485916]
+[node name="LudumLogo" type="TextureRect" parent="MainMenuBg" unique_id=1229180020]
+layout_mode = 0
+offset_left = 786.0
+offset_top = 464.0
+offset_right = 861.0
+offset_bottom = 491.0
+scale = Vector2(2, 2)
+texture = ExtResource("2_wu84c")
+
+[node name="MainMenu" type="Panel" parent="MainMenuBg" unique_id=899093119]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -234.0
+offset_top = 146.0
+offset_right = -97.0
+offset_bottom = 283.0
+grow_horizontal = 0
+theme_override_styles/panel = ExtResource("3_oa1go")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuBg/MainMenu" unique_id=1045991125]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -38.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_8ln24")
+
+[node name="play" type="Button" parent="MainMenuBg/MainMenu/VBoxContainer" unique_id=1708745799]
+layout_mode = 2
+theme = ExtResource("3_8ln24")
+text = "Play"
+
+[node name="setting" type="Button" parent="MainMenuBg/MainMenu/VBoxContainer" unique_id=432941895]
+layout_mode = 2
+theme = ExtResource("3_8ln24")
+text = "Setting"
+
+[node name="GameName" type="Panel" parent="MainMenuBg" unique_id=1581671170]
+layout_mode = 1
+offset_left = 221.0
+offset_top = 102.0
+offset_right = 431.0
+offset_bottom = 154.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_5dd4i")
+
+[node name="Name" type="Label" parent="MainMenuBg/GameName" unique_id=375178774]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -28.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_rtw2f")
+theme_override_font_sizes/font_size = 60
+text = "The Game"
+label_settings = SubResource("LabelSettings_oa1go")
+
+[node name="Fade" type="TextureRect" parent="." unique_id=909485916]
+visible = false
 material = SubResource("ShaderMaterial_jk1qb")
 layout_mode = 0
-offset_right = 954.0
-offset_bottom = 542.0
+offset_left = 2.0
+offset_top = -8.0
+offset_right = 956.0
+offset_bottom = 534.0
 texture = SubResource("GradientTexture1D_lgwnu")
 
 [node name="MenuControl" parent="." unique_id=2064660248 instance=ExtResource("2_ekxnf")]
+visible = false
 layout_mode = 1

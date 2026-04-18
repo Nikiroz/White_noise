@@ -17,44 +17,8 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="MainMenu" type="Panel" parent="." unique_id=1470546984]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -58.0
-offset_top = -58.0
-offset_right = 58.0
-offset_bottom = 58.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu" unique_id=1677349944]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -31.5
-offset_top = -33.0
-offset_right = 31.5
-offset_bottom = 33.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="play" type="Button" parent="MainMenu/VBoxContainer" unique_id=124319602]
-layout_mode = 2
-text = "Play"
-
-[node name="setting" type="Button" parent="MainMenu/VBoxContainer" unique_id=1124844020]
-layout_mode = 2
-text = "Setting"
-
 [node name="Pause" type="NinePatchRect" parent="." unique_id=885802497]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
