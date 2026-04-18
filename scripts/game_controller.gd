@@ -5,12 +5,16 @@ var mainMenu: Control
 var fade: TextureRect
 var mat: ShaderMaterial
 var music_player: AudioStreamPlayer
+@onready var timerLabel: Label = %TimerLabel
+var timer: Timer
+
+var time_left := 180.0 # 3 минуты
 
 func fade_out(duration := 0.5) -> void:
 	fade.show()
 	mat.set_shader_parameter("fade", 1.0)
 	create_tween().tween_property(mat, "shader_parameter/fade", 0.0, duration)
-
+	
 func fade_in(duration := 0.5) -> void:
 	fade.show()
 	mat.set_shader_parameter("fade", 0.0)
@@ -21,7 +25,8 @@ func _cache_ui() -> void:
 	mainMenu = scene.get_node("UI/Control/MainMenuBg") as Control
 	fade = scene.get_node("UI/Control/Fade") as TextureRect
 	mat = fade.material as ShaderMaterial
-
+	timerLabel = scene.get_node("UI/Control/TimerLabel") as Label
+	print(timerLabel)
 func play_loop(stream: AudioStream, bus := "Sfx", volume_db := 0.0) -> AudioStreamPlayer:
 	var p := AudioStreamPlayer.new()
 	p.stream = stream
@@ -50,11 +55,36 @@ func _init_menu() -> void:
 	play_loop(preload("res://sounds/Blizzard.mp3"))
 	play_loop(preload("res://sounds/Forest.mp3"))
 	music_player = play_loop(preload("res://sounds/music/ambient_main_menu.mp3"),"Music")
+	timer = Timer.new()
+	timer.one_shot = true
+	timer.wait_time = time_left
+	add_child(timer)
+	timer.timeout.connect(_on_time_up)
+	_update_label()
 
 func _ready() -> void:
 	get_tree().paused = true
 	_init_menu()
 	
+
+func _process(delta: float) -> void:
+	if timer.is_stopped():
+		return
+
+	time_left = timer.time_left
+	_update_label()
+
+func _update_label() -> void:
+	var seconds := int(ceil(time_left))
+	var minutes := seconds / 60
+	var secs := seconds % 60
+	timerLabel.text = "%02d:%02d" % [minutes, secs]
+
+func _on_time_up() -> void:
+	timerLabel.text = "00:00"
+	print("Время вышло!")
+
+
 func _startGame() -> void:
 	if get_tree().paused:
 		get_tree().paused = false
@@ -65,6 +95,7 @@ func _startGame() -> void:
 	mainMenu.visible = false
 	fade_out(3)
 	isMainMenu = false
+	timer.start()
 
 func _returnToMainMenu() -> void:
 	get_tree().paused = true

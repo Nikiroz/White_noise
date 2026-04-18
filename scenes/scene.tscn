@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://cih232gdp4qsa" path="res://scripts/line_2d.gd" id="6_btauh"]
 [ext_resource type="Script" uid="uid://glrcjk0ebicq" path="res://scripts/lader.gd" id="6_t7and"]
 [ext_resource type="Script" uid="uid://byj0lj7v7c6jm" path="res://scripts/rigid_body_2d.gd" id="7_jyay1"]
+[ext_resource type="Texture2D" uid="uid://cg8hdsespmb2a" path="res://references/timer.png" id="7_ruw3y"]
 [ext_resource type="Texture2D" uid="uid://c0bovh6g3nkr5" path="res://sprites/icon.svg" id="8_71dqt"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wdmri"]
@@ -101,6 +102,7 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="Collisions" type="Node2D" parent="." unique_id=1904244257]
+visible = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Collisions" unique_id=245211171]
 position = Vector2(920, 340)
@@ -140,6 +142,11 @@ shape = SubResource("RectangleShape2D_tpwpp")
 one_way_collision = true
 one_way_collision_margin = 2.0
 debug_color = Color(0.3139053, 0.62394506, 0.15713751, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1028650111]
+position = Vector2(563, 391)
+scale = Vector2(0.3811203, 0.3811203)
+texture = ExtResource("7_ruw3y")
 
 [connection signal="body_entered" from="Collisions/Ladder" to="Collisions/Ladder" method="_on_body_entered"]
 [connection signal="body_exited" from="Collisions/Ladder" to="Collisions/Ladder" method="_on_body_exited"]
