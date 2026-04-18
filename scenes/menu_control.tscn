@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://dip4oymwc3ulh"]
+
+[ext_resource type="Script" uid="uid://bm6o0m0ki815" path="res://scripts/pauseMenu.gd" id="1_oin43"]
+[ext_resource type="Texture2D" uid="uid://da8fphhq731aa" path="res://sprites/ui_blank.png" id="1_svpbc"]
+[ext_resource type="Theme" uid="uid://dusbxqn3cho4s" path="res://styles/buttons.tres" id="3_hs3ag"]
+[ext_resource type="LabelSettings" uid="uid://xnxv2aha4is4" path="res://styles/menu_title.tres" id="4_dw83j"]
+
+[node name="MenuControl" type="Control" unique_id=2064660248]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MainMenu" type="Panel" parent="." unique_id=1470546984]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.0
+offset_top = -58.0
+offset_right = 58.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu" unique_id=1677349944]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.5
+offset_top = -33.0
+offset_right = 31.5
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="play" type="Button" parent="MainMenu/VBoxContainer" unique_id=124319602]
+layout_mode = 2
+text = "Play"
+
+[node name="setting" type="Button" parent="MainMenu/VBoxContainer" unique_id=1124844020]
+layout_mode = 2
+text = "Setting"
+
+[node name="Pause" type="NinePatchRect" parent="." unique_id=885802497]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.0
+offset_top = -65.0
+offset_right = 59.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_svpbc")
+region_rect = Rect2(0, 0, 27, 30)
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Pause" unique_id=1146321305]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause/MarginContainer" unique_id=1525180344]
+layout_mode = 2
+script = ExtResource("1_oin43")
+
+[node name="Label" type="Label" parent="Pause/MarginContainer/VBoxContainer" unique_id=401738867]
+layout_mode = 2
+theme = ExtResource("3_hs3ag")
+text = "PAUSE"
+label_settings = ExtResource("4_dw83j")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause/MarginContainer/VBoxContainer" unique_id=619954931]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="play" type="Button" parent="Pause/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1463923372]
+layout_mode = 2
+theme = ExtResource("3_hs3ag")
+text = "Resume"
+
+[node name="setting" type="Button" parent="Pause/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1918445632]
+layout_mode = 2
+theme = ExtResource("3_hs3ag")
+text = "Options"
+
+[node name="exit" type="Button" parent="Pause/MarginContainer/VBoxContainer/VBoxContainer" unique_id=145540549]
+layout_mode = 2
+theme = ExtResource("3_hs3ag")
+text = "Quit to menu
+"
+
+[connection signal="pressed" from="Pause/MarginContainer/VBoxContainer/VBoxContainer/play" to="Pause/MarginContainer/VBoxContainer" method="_on_play_pressed"]

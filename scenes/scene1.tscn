@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://gc5ojvigf81x"]
+
+[ext_resource type="Script" uid="uid://0top4irfr801" path="res://scripts/animation_player.gd" id="1_f1jql"]
+[ext_resource type="Shader" uid="uid://bsmtlhhvdnjfv" path="res://shaders/game.gdshader" id="3_lfno2"]
+[ext_resource type="Texture2D" uid="uid://cfsljeg2r0aa4" path="res://sprites/bg.png" id="4_ug83y"]
+[ext_resource type="Script" uid="uid://dwpegbkydkyn7" path="res://scenes/bg.gd" id="5_rayba"]
+[ext_resource type="Script" uid="uid://cih232gdp4qsa" path="res://scripts/line_2d.gd" id="6_btauh"]
+[ext_resource type="Script" uid="uid://byj0lj7v7c6jm" path="res://scripts/rigid_body_2d.gd" id="7_jyay1"]
+[ext_resource type="Texture2D" uid="uid://c0bovh6g3nkr5" path="res://sprites/icon.svg" id="8_71dqt"]
+
+[sub_resource type="Gradient" id="Gradient_lnu2h"]
+colors = PackedColorArray(0.14117648, 0.52156866, 0.6509804, 1, 0.32941177, 0.7294118, 0.8235294, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4gngc"]
+gradient = SubResource("Gradient_lnu2h")
+fill_from = Vector2(1, 0.84565216)
+
+[sub_resource type="Gradient" id="Gradient_iywne"]
+colors = PackedColorArray(0.33333334, 0.627451, 0.34509805, 1, 0.6313726, 0.7490196, 0.25490198, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k2ng3"]
+gradient = SubResource("Gradient_iywne")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mw1gl"]
+shader = ExtResource("3_lfno2")
+shader_parameter/game_time = 0.0
+shader_parameter/speed = Vector2(-0.15, 0.25)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wdmri"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fliow"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(50, 1, 1)
+gravity = Vector3(0, 98, 0)
+linear_accel_min = -25.270002
+linear_accel_max = 57.529995
+scale_max = 3.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qd0i8"]
+size = Vector2(51, 51)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7pbgo"]
+size = Vector2(128, 129)
+
+[node name="Scene1" type="Node2D" unique_id=55088034]
+script = ExtResource("1_f1jql")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1066564817]
+position = Vector2(309, 162)
+scale = Vector2(10.890625, 4.4375)
+texture = SubResource("GradientTexture2D_4gngc")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=2078366970]
+position = Vector2(320, 318.99997)
+scale = Vector2(11.546875, 1.4687499)
+texture = SubResource("GradientTexture2D_k2ng3")
+
+[node name="Bg" type="Sprite2D" parent="." unique_id=90009078]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_mw1gl")
+position = Vector2(581, 106)
+texture = ExtResource("4_ug83y")
+script = ExtResource("5_rayba")
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="." unique_id=2110606071]
+position = Vector2(143.4, 53.4)
+node_a = NodePath("../Icon2/StaticBody2D")
+node_b = NodePath("../RigidBody2D")
+length = 80.0
+rest_length = 80.0
+stiffness = 31.0
+damping = 0.7
+
+[node name="Beam" type="Line2D" parent="DampedSpringJoint2D" unique_id=1485021731]
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("6_btauh")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1728851626]
+position = Vector2(143, 143)
+disable_mode = 2
+input_pickable = true
+mass = 1.5
+physics_material_override = SubResource("PhysicsMaterial_wdmri")
+script = ExtResource("7_jyay1")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="RigidBody2D" unique_id=959427045]
+position = Vector2(-1, 44.999996)
+scale = Vector2(0.4, 0.4)
+process_material = SubResource("ParticleProcessMaterial_fliow")
+
+[node name="Icon" type="Sprite2D" parent="RigidBody2D" unique_id=786240481]
+position = Vector2(-1, 39)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("8_71dqt")
+offset = Vector2(2.5, -47.500015)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=2111708616]
+position = Vector2(-0.5, 19.5)
+shape = SubResource("RectangleShape2D_qd0i8")
+
+[node name="Icon2" type="Sprite2D" parent="." unique_id=266461923]
+position = Vector2(143.4, 53.399994)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("8_71dqt")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Icon2" unique_id=2141202005]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Icon2/StaticBody2D" unique_id=932525177]
+position = Vector2(-1, -1.5)
+shape = SubResource("RectangleShape2D_7pbgo")
