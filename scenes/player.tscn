@@ -177,6 +177,17 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_dqkch"]
+offsets = PackedFloat32Array(0, 0.54901963)
+colors = PackedColorArray(0.24477637, 0.24477643, 0.24477634, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qlg0r"]
+gradient = SubResource("Gradient_dqkch")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3vyb7"]
 radius = 22.0
 height = 100.0
@@ -185,8 +196,14 @@ height = 100.0
 script = ExtResource("1_qhqgy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=568776571]
+light_mask = 2
 sprite_frames = SubResource("SpriteFrames_3v2ag")
 animation = &"climb"
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=7032248]
+position = Vector2(-1, -24)
+range_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_qlg0r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1758622551]
 shape = SubResource("CapsuleShape2D_3vyb7")

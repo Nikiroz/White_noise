@@ -34,6 +34,8 @@ func _process(_delta: float) -> void:
 		return
 
 	if Input.is_action_just_pressed("interact"):
+		if GameController.isBlockInteraction:
+			return
 		var terminal := find_terminal()
 		var p := get_tree().get_first_node_in_group("player")
 		if p:

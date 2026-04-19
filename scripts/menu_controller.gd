@@ -40,26 +40,32 @@ func _hide_all() ->void:
 	_hide_pause()
 		
 func _set_pause(isKey = false) -> void:
+	
 	if isKey:
 		if GameController.isMainMenu:
 			if _containerSettings.visible == true:
 				_hide_all()
+				GameController.timer.paused = false
 		else:
 			if _menuSettings.visible == false:
 				_show_pause()
+				GameController.timer.paused = true
 			else:
 				if _containerSettings.visible == true:
 					_hide_settings()
 				else:
 					_hide_all()
+					GameController.timer.paused = false
 	else:
 		if _containerSettings.visible == true:
 			if GameController.isMainMenu:
 				_hide_all()
+				GameController.timer.paused = false
 			else:
 				_hide_settings()
 		else:
 			_hide_all()
+			GameController.timer.paused = false
 			
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):

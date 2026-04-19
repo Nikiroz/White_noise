@@ -33,6 +33,8 @@ func _process(_delta: float) -> void:
 		return
 
 	if Input.is_action_just_pressed("interact"):
+		if GameController.isBlockInteraction:
+			return
 		var terminal := find_radio()
 		if terminal:
 			var bus := AudioServer.get_bus_index("Radio")

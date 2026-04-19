@@ -315,6 +315,7 @@ script = ExtResource("11_a8gd2")
 _container = NodePath("../../../../../../../SettingsContainer")
 
 [node name="exit" type="Button" parent="MenuContainer/PauseContainer/MarginContainer/Crt/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1447785251]
+visible = false
 layout_mode = 2
 theme = ExtResource("9_5dd4i")
 text = "Quit to menu
