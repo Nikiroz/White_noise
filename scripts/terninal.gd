@@ -24,7 +24,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		var digit := _digit_from_keycode(key.keycode)
 		if digit != "":
 			if buffer.length() < MAX_LEN:
-				GameController.play_one_shot(preload("res://sounds/click_2.wav"))
+				GameController.play_one_shot(preload("res://sounds/Keyboard.mp3"))
 				buffer += digit
 				_refresh()
 			get_viewport().set_input_as_handled()
@@ -94,4 +94,7 @@ func _refresh() -> void:
 	inp.text = buffer
 
 func _escape() -> void:
+	var p := get_tree().get_first_node_in_group("player")
+	if p:
+		p.set_can_move(true)
 	visible = false

@@ -35,5 +35,8 @@ func _process(_delta: float) -> void:
 
 	if Input.is_action_just_pressed("interact"):
 		var terminal := find_terminal()
+		var p := get_tree().get_first_node_in_group("player")
+		if p:
+			p.set_can_move(false)
 		if terminal:
 			terminal.visible = true

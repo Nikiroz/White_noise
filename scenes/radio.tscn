@@ -1,0 +1,235 @@
+[gd_scene format=3 uid="uid://dhjbokyrgr0gj"]
+
+[ext_resource type="Script" uid="uid://dg5yi48qsa7qd" path="res://scenes/radio.gd" id="1_3mpwk"]
+[ext_resource type="Texture2D" uid="uid://jwe7ki0tmvbw" path="res://sprites/radio_bg.png" id="2_ldjbc"]
+[ext_resource type="Texture2D" uid="uid://b7yqoodoehma3" path="res://sprites/radio_bg_2.png" id="3_7h80l"]
+[ext_resource type="Texture2D" uid="uid://isrhker0x1k3" path="res://sprites/knob.png" id="4_4b7o3"]
+[ext_resource type="Script" uid="uid://j5l51xbqmpm4" path="res://scenes/wave_game.gd" id="4_144bg"]
+[ext_resource type="Script" uid="uid://c0q3vekgtqckw" path="res://scripts/knob.gd" id="5_hhhqh"]
+[ext_resource type="Theme" uid="uid://d0o6iq3og730v" path="res://styles/terminal.tres" id="6_uf7ta"]
+[ext_resource type="Script" uid="uid://clx5kw46uq5vr" path="res://scenes/radio_back.gd" id="7_uf7ta"]
+
+[sub_resource type="Gradient" id="Gradient_lgwnu"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0.5882353)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0yy3c"]
+gradient = SubResource("Gradient_lgwnu")
+
+[sub_resource type="Gradient" id="Gradient_jk1qb"]
+offsets = PackedFloat32Array(0.8433735, 0.9939759)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j4jqg"]
+gradient = SubResource("Gradient_jk1qb")
+width = 128
+height = 128
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lgwnu"]
+texture = SubResource("GradientTexture2D_j4jqg")
+
+[sub_resource type="Theme" id="Theme_8ohbp"]
+Panel/styles/panel = SubResource("StyleBoxTexture_lgwnu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_144bg"]
+
+[node name="Radio" type="Control" unique_id=1431647326]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3mpwk")
+
+[node name="Shadow" type="TextureRect" parent="." unique_id=1847904986]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_0yy3c")
+
+[node name="Container" type="Panel" parent="Shadow" unique_id=1720057607]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -227.25
+offset_top = -147.75
+offset_right = 227.25
+offset_bottom = 147.75
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_8ohbp")
+
+[node name="MarginContainer" type="MarginContainer" parent="Shadow/Container" unique_id=655676593]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="bg" type="NinePatchRect" parent="Shadow/Container/MarginContainer" unique_id=2139794944]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_ldjbc")
+region_rect = Rect2(0, 0, 30, 30)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="WaveGame" type="NinePatchRect" parent="Shadow/Container/MarginContainer/bg" unique_id=1814501214]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -91.0
+offset_right = 96.0
+offset_bottom = 91.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_7h80l")
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+script = ExtResource("4_144bg")
+
+[node name="GraphPanel" type="Panel" parent="Shadow/Container/MarginContainer/bg/WaveGame" unique_id=275968436]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.25
+offset_top = 21.75
+offset_right = 14.25
+offset_bottom = 21.75
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_144bg")
+
+[node name="TargetLine" type="Line2D" parent="Shadow/Container/MarginContainer/bg/WaveGame/GraphPanel" unique_id=1538831228]
+points = PackedVector2Array(0, 0, 160, 0)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="PlayerLine" type="Line2D" parent="Shadow/Container/MarginContainer/bg/WaveGame/GraphPanel" unique_id=1699445003]
+points = PackedVector2Array(0, -36.44, 160, 36.125)
+width = 3.0
+default_color = Color(0.4605162, 0.21728939, 0.095495455, 1)
+
+[node name="ScoreLabel" type="Label" parent="Shadow/Container/MarginContainer/bg/WaveGame" unique_id=1666640559]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 5.25
+offset_top = -22.25
+offset_right = 83.25
+offset_bottom = -6.25
+text = "ScoreLabel"
+horizontal_alignment = 1
+
+[node name="StatusLabel" type="Label" parent="Shadow/Container/MarginContainer/bg/WaveGame" unique_id=2086682276]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 9.25
+offset_top = 193.75
+offset_right = 93.25
+offset_bottom = 209.75
+text = "StatusLabel"
+horizontal_alignment = 1
+
+[node name="ValueLabel" type="Label" parent="Shadow/Container/MarginContainer/bg/WaveGame" unique_id=986086440]
+visible = false
+layout_mode = 0
+offset_left = -74.75
+offset_top = 93.75
+offset_right = -34.75
+offset_bottom = 109.75
+text = "100"
+horizontal_alignment = 1
+
+[node name="Knob" type="TextureButton" parent="Shadow/Container/MarginContainer/bg/WaveGame" unique_id=288571129]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -105.75
+offset_top = 113.75
+offset_right = -5.75
+offset_bottom = 213.75
+texture_normal = ExtResource("4_4b7o3")
+script = ExtResource("5_hhhqh")
+smooth_speed = 5.0
+label_path = NodePath("../ValueLabel")
+
+[node name="ValueLabel2" type="Label" parent="Shadow/Container/MarginContainer/bg/WaveGame" unique_id=265314336]
+visible = false
+layout_mode = 0
+offset_left = 232.25
+offset_top = 93.75
+offset_right = 272.25
+offset_bottom = 109.75
+text = "100"
+horizontal_alignment = 1
+
+[node name="Knob2" type="TextureButton" parent="Shadow/Container/MarginContainer/bg/WaveGame" unique_id=583603387]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 199.25
+offset_top = 114.75
+offset_right = 299.25
+offset_bottom = 214.75
+texture_normal = ExtResource("4_4b7o3")
+script = ExtResource("5_hhhqh")
+smooth_speed = 5.0
+label_path = NodePath("../ValueLabel2")
+
+[node name="ValueLabel3" type="Label" parent="Shadow/Container/MarginContainer/bg/WaveGame" unique_id=796259812]
+visible = false
+layout_mode = 0
+offset_left = -72.75
+offset_top = -36.25
+offset_right = -32.75
+offset_bottom = -20.25
+text = "100"
+horizontal_alignment = 1
+
+[node name="Knob3" type="TextureButton" parent="Shadow/Container/MarginContainer/bg/WaveGame" unique_id=1845756771]
+layout_mode = 0
+offset_left = -105.75
+offset_top = -15.25
+offset_right = -5.75
+offset_bottom = 84.75
+texture_normal = ExtResource("4_4b7o3")
+script = ExtResource("5_hhhqh")
+smooth_speed = 5.0
+label_path = NodePath("../ValueLabel3")
+
+[node name="Back" type="Button" parent="Shadow/Container/MarginContainer/bg" unique_id=1468598320]
+layout_mode = 0
+offset_left = 374.25
+offset_top = 15.25
+offset_right = 426.25
+offset_bottom = 46.25
+size_flags_vertical = 8
+theme = ExtResource("6_uf7ta")
+text = "Back"
+script = ExtResource("7_uf7ta")

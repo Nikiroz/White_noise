@@ -7,7 +7,14 @@ var mat: ShaderMaterial
 var music_player: AudioStreamPlayer
 var timer: Timer
 var timer_digits: Node2D
-var time_left := 180.0 # 3 минуты
+var time_left := 300.0 # 5 минут
+var code = 0
+
+var radio_code: String = ""  # например "3709182456"
+
+func set_radio_code(code: String) -> void:
+	radio_code = code
+	print("GameController radio_code =", radio_code)
 
 func fade_out(duration := 0.5) -> void:
 	fade.show()
@@ -25,7 +32,7 @@ func _cache_ui() -> void:
 	fade = scene.get_node("UI/Control/Fade") as TextureRect
 	mat = fade.material as ShaderMaterial
 	timer_digits = scene.get_node("Scene/TimerDigits") as Node2D
-
+	
 func play_loop(stream: AudioStream, bus := "Sfx", volume_db := 0.0) -> AudioStreamPlayer:
 	var p := AudioStreamPlayer.new()
 	p.stream = stream
@@ -66,6 +73,11 @@ func _ready() -> void:
 	get_tree().paused = true
 	_init_menu()
 
+	
+
+func _on_sequence_generated(seq: Array[int]) -> void:
+	print("Новый ряд:", seq)
+	
 func _process(delta: float) -> void:
 	if timer.is_stopped():
 		return

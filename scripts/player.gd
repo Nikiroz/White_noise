@@ -14,6 +14,12 @@ var climb_mode := false
 var drop_timer := 0.0
 var one_way_ignored := false
 var current_ladder: Area2D = null
+var can_move := true
+
+func set_can_move(v: bool) -> void:
+	can_move = v
+	if not can_move:
+		velocity.x = 0.0
 
 func set_current_ladder(ladder: Area2D) -> void:
 	current_ladder = ladder
@@ -32,6 +38,10 @@ func _snap_to_ladder_center() -> void:
 	global_position.x = shape.global_position.x if shape else current_ladder.global_position.x
 
 func _physics_process(delta: float) -> void:
+	if not can_move:
+		if sprite.animation != "idle":
+			sprite.play("idle")
+		return
 	var dir_x := Input.get_axis("ui_left", "ui_right")
 	var dir_y := Input.get_axis("ui_up", "ui_down")
 

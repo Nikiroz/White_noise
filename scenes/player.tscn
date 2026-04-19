@@ -198,3 +198,6 @@ collision_mask = 4
 hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
+
+[node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=727357295]
+current = true

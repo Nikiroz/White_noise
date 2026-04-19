@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://8d7k40fybfbh"
+path="res://.godot/imported/Undenis - Цветы Зла.mp3-4db1ae4f8f7bb6aa193c9a5d02848092.mp3str"
+
+[deps]
+
+source_file="res://sounds/music/Undenis - Цветы Зла.mp3"
+dest_files=["res://.godot/imported/Undenis - Цветы Зла.mp3-4db1ae4f8f7bb6aa193c9a5d02848092.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

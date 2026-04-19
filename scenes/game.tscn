@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dlxcemoturann" path="res://scenes/main_menu.tscn" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://dl7v430tolwpv" path="res://scenes/terninal.tscn" id="2_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://dhjbokyrgr0gj" path="res://scenes/radio.tscn" id="3_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://gc5ojvigf81x" path="res://scenes/scene.tscn" id="3_lnu2h"]
 
 [node name="Game" type="Node2D" unique_id=1173063298]
@@ -11,6 +12,9 @@
 [node name="Control" parent="UI" unique_id=166247087 instance=ExtResource("1_yqjtg")]
 
 [node name="Terninal" parent="UI" unique_id=1431647326 instance=ExtResource("2_lnu2h")]
+visible = false
+
+[node name="Radio" parent="UI" unique_id=1294751188 instance=ExtResource("3_lbhrr")]
 visible = false
 
 [node name="Scene" parent="." unique_id=55088034 instance=ExtResource("3_lnu2h")]
