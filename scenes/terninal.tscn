@@ -1,0 +1,260 @@
+[gd_scene format=3 uid="uid://dl7v430tolwpv"]
+
+[ext_resource type="Script" uid="uid://bmv7i4cxm3rp6" path="res://scripts/terninal.gd" id="1_2af5o"]
+[ext_resource type="Texture2D" uid="uid://da8fphhq731aa" path="res://sprites/ui_blank.png" id="1_e5fqe"]
+[ext_resource type="Theme" uid="uid://d0o6iq3og730v" path="res://styles/terminal.tres" id="3_dhh7i"]
+[ext_resource type="Script" uid="uid://b7s1ibhdrtpt1" path="res://scripts/timer_terminal.gd" id="4_8ohbp"]
+[ext_resource type="Texture2D" uid="uid://cve0254kpls87" path="res://sprites/ui_blank_2.png" id="4_j4jqg"]
+[ext_resource type="Script" uid="uid://dqqqkbh50cmme" path="res://scripts/back_terminal.gd" id="6_0yy3c"]
+[ext_resource type="Script" uid="uid://cbo8640nqrl51" path="res://scripts/terminal_button.gd" id="6_j4jqg"]
+
+[sub_resource type="Gradient" id="Gradient_lgwnu"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0.5882353)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0yy3c"]
+gradient = SubResource("Gradient_lgwnu")
+
+[sub_resource type="Gradient" id="Gradient_jk1qb"]
+offsets = PackedFloat32Array(0.8433735, 0.9939759)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j4jqg"]
+gradient = SubResource("Gradient_jk1qb")
+width = 128
+height = 128
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lgwnu"]
+texture = SubResource("GradientTexture2D_j4jqg")
+
+[sub_resource type="Theme" id="Theme_8ohbp"]
+Panel/styles/panel = SubResource("StyleBoxTexture_lgwnu")
+
+[node name="Terminal" type="Control" unique_id=1431647326]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2af5o")
+
+[node name="MenuContainer" type="TextureRect" parent="." unique_id=1847904986]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_0yy3c")
+
+[node name="SettingsContainer" type="Panel" parent="MenuContainer" unique_id=1720057607]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.0
+offset_top = -133.5
+offset_right = 119.0
+offset_bottom = 126.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_8ohbp")
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuContainer/SettingsContainer" unique_id=655676593]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuContainer/SettingsContainer/MarginContainer" unique_id=57036331]
+layout_mode = 2
+
+[node name="Crt" type="NinePatchRect" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2" unique_id=2139794944]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("1_e5fqe")
+region_rect = Rect2(0, 0, 60.014378, 60.06906)
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Crt" unique_id=333907074]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Crt/MarginContainer" unique_id=1015051505]
+layout_mode = 2
+
+[node name="Timer" type="Label" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Crt/MarginContainer/VBoxContainer" unique_id=1595841563]
+layout_mode = 2
+theme = ExtResource("3_dhh7i")
+text = "00:00"
+horizontal_alignment = 1
+script = ExtResource("4_8ohbp")
+
+[node name="Output" type="RichTextLabel" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Crt/MarginContainer/VBoxContainer" unique_id=448094828]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_dhh7i")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Crt/MarginContainer/VBoxContainer" unique_id=766339386]
+layout_mode = 2
+
+[node name=">" type="Label" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Crt/MarginContainer/VBoxContainer/HBoxContainer" unique_id=956519158]
+layout_mode = 2
+theme = ExtResource("3_dhh7i")
+text = ">"
+
+[node name="Input" type="Label" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Crt/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1513330698]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_dhh7i")
+
+[node name="Keyboard" type="NinePatchRect" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2" unique_id=566409959]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("4_j4jqg")
+region_rect = Rect2(0, 0, 60.014378, 60.06906)
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Keyboard" unique_id=1201805103]
+layout_mode = 0
+offset_top = -12.0
+offset_right = 224.0
+offset_bottom = 105.0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 17
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Keyboard/MarginContainer" unique_id=254322375]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Keys" type="GridContainer" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Keyboard/MarginContainer/VBoxContainer" unique_id=27022062]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 4
+
+[node name="1" type="Button" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Keyboard/MarginContainer/VBoxContainer/Keys" unique_id=496321716]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_dhh7i")
+text = "1"
+script = ExtResource("6_j4jqg")
+
+[node name="2" type="Button" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Keyboard/MarginContainer/VBoxContainer/Keys" unique_id=740666874]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_dhh7i")
+text = "2"
+script = ExtResource("6_j4jqg")
+
+[node name="3" type="Button" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Keyboard/MarginContainer/VBoxContainer/Keys" unique_id=1331927966]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_dhh7i")
+text = "3"
+script = ExtResource("6_j4jqg")
+
+[node name="4" type="Button" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Keyboard/MarginContainer/VBoxContainer/Keys" unique_id=181427143]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_dhh7i")
+text = "4"
+script = ExtResource("6_j4jqg")
+
+[node name="5" type="Button" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Keyboard/MarginContainer/VBoxContainer/Keys" unique_id=899362392]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_dhh7i")
+text = "5"
+script = ExtResource("6_j4jqg")
+
+[node name="6" type="Button" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Keyboard/MarginContainer/VBoxContainer/Keys" unique_id=1994817144]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_dhh7i")
+text = "6"
+script = ExtResource("6_j4jqg")
+
+[node name="7" type="Button" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Keyboard/MarginContainer/VBoxContainer/Keys" unique_id=459557685]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_dhh7i")
+text = "7"
+script = ExtResource("6_j4jqg")
+
+[node name="8" type="Button" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Keyboard/MarginContainer/VBoxContainer/Keys" unique_id=145901811]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_dhh7i")
+text = "8"
+script = ExtResource("6_j4jqg")
+
+[node name="9" type="Button" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Keyboard/MarginContainer/VBoxContainer/Keys" unique_id=701642757]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_dhh7i")
+text = "9"
+script = ExtResource("6_j4jqg")
+
+[node name="0" type="Button" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Keyboard/MarginContainer/VBoxContainer/Keys" unique_id=1556563731]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_dhh7i")
+text = "0"
+script = ExtResource("6_j4jqg")
+
+[node name="Backspase" type="Button" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Keyboard/MarginContainer/VBoxContainer/Keys" unique_id=2142158958]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme = ExtResource("3_dhh7i")
+text = "←"
+script = ExtResource("6_j4jqg")
+
+[node name="Enter" type="Button" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Keyboard/MarginContainer/VBoxContainer/Keys" unique_id=1629319579]
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("3_dhh7i")
+text = "↲"
+script = ExtResource("6_j4jqg")
+
+[node name="Back" type="Button" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Keyboard/MarginContainer/VBoxContainer" unique_id=1132173778]
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("3_dhh7i")
+text = "Back"
+script = ExtResource("6_0yy3c")

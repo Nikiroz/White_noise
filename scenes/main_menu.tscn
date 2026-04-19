@@ -13,7 +13,6 @@
 [ext_resource type="Script" uid="uid://dhqpjrrleajcq" path="res://scripts/setting_button.gd" id="11_a8gd2"]
 [ext_resource type="Script" uid="uid://blhssw174lbbt" path="res://scripts/restart.gd" id="12_1ajci"]
 [ext_resource type="Script" uid="uid://cty874etsje8b" path="res://scripts/back.gd" id="12_j7ex8"]
-[ext_resource type="FontFile" uid="uid://cqqx14m4tqnh0" path="res://font/pixelNumbers-Regular.ttf" id="15_7b55j"]
 [ext_resource type="Shader" uid="uid://dmuc4hai33lql" path="res://shaders/fade_shader.gdshader" id="16_5pajh"]
 
 [sub_resource type="Gradient" id="Gradient_l6cm7"]
@@ -97,10 +96,6 @@ colors = PackedColorArray(0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_lgwnu"]
 gradient = SubResource("Gradient_5dd4i")
-
-[sub_resource type="LabelSettings" id="LabelSettings_5pajh"]
-font = ExtResource("15_7b55j")
-font_size = 22
 
 [node name="Control" type="Control" unique_id=166247087]
 process_mode = 3
@@ -449,13 +444,3 @@ texture = SubResource("GradientTexture1D_lgwnu")
 [node name="UiPlayer" type="AudioStreamPlayer" parent="." unique_id=49969641]
 unique_name_in_owner = true
 process_mode = 3
-
-[node name="TimerLabel" type="Label" parent="." unique_id=819793969]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 541.0
-offset_top = 374.0
-offset_right = 599.0
-offset_bottom = 416.0
-text = "11:11"
-label_settings = SubResource("LabelSettings_5pajh")

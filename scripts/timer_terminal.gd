@@ -1,0 +1,9 @@
+extends Label
+var time_left: float
+
+func _process(delta: float) -> void:
+	time_left = GameController.time_left
+	var seconds := int(ceil(time_left))
+	var minutes := seconds / 60
+	var secs := seconds % 60
+	text = "%02d:%02d" % [minutes, secs]

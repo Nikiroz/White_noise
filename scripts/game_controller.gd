@@ -5,16 +5,15 @@ var mainMenu: Control
 var fade: TextureRect
 var mat: ShaderMaterial
 var music_player: AudioStreamPlayer
-@onready var timerLabel: Label = %TimerLabel
 var timer: Timer
-
+var timer_digits: Node2D
 var time_left := 180.0 # 3 минуты
 
 func fade_out(duration := 0.5) -> void:
 	fade.show()
 	mat.set_shader_parameter("fade", 1.0)
 	create_tween().tween_property(mat, "shader_parameter/fade", 0.0, duration)
-	
+
 func fade_in(duration := 0.5) -> void:
 	fade.show()
 	mat.set_shader_parameter("fade", 0.0)
@@ -25,8 +24,8 @@ func _cache_ui() -> void:
 	mainMenu = scene.get_node("UI/Control/MainMenuBg") as Control
 	fade = scene.get_node("UI/Control/Fade") as TextureRect
 	mat = fade.material as ShaderMaterial
-	timerLabel = scene.get_node("UI/Control/TimerLabel") as Label
-	print(timerLabel)
+	timer_digits = scene.get_node("Scene/TimerDigits") as Node2D
+
 func play_loop(stream: AudioStream, bus := "Sfx", volume_db := 0.0) -> AudioStreamPlayer:
 	var p := AudioStreamPlayer.new()
 	p.stream = stream
@@ -38,7 +37,7 @@ func play_loop(stream: AudioStream, bus := "Sfx", volume_db := 0.0) -> AudioStre
 	p.play()
 	return p
 
-func play_one_shot(stream: AudioStream, bus := "Sfx", volume_db := 0.0) -> void:
+func play_one_shot(stream: AudioStream, bus := "Sfx", volume_db := 0.0) -> AudioStreamPlayer:
 	var p := AudioStreamPlayer.new()
 	p.stream = stream
 	p.bus = bus
@@ -47,13 +46,14 @@ func play_one_shot(stream: AudioStream, bus := "Sfx", volume_db := 0.0) -> void:
 	add_child(p)
 	p.finished.connect(p.queue_free)
 	p.play()
+	return p
 	
 func _init_menu() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	await get_tree().process_frame
 	_cache_ui()
-	play_loop(preload("res://sounds/Blizzard.mp3"))
-	play_loop(preload("res://sounds/Forest.mp3"))
+	play_loop(preload("res://sounds/Blizzard.mp3"),"Ambient")
+	play_loop(preload("res://sounds/Forest.mp3"),"Ambient")
 	music_player = play_loop(preload("res://sounds/music/ambient_main_menu.mp3"),"Music")
 	timer = Timer.new()
 	timer.one_shot = true
@@ -65,7 +65,6 @@ func _init_menu() -> void:
 func _ready() -> void:
 	get_tree().paused = true
 	_init_menu()
-	
 
 func _process(delta: float) -> void:
 	if timer.is_stopped():
@@ -75,15 +74,12 @@ func _process(delta: float) -> void:
 	_update_label()
 
 func _update_label() -> void:
-	var seconds := int(ceil(time_left))
-	var minutes := seconds / 60
-	var secs := seconds % 60
-	timerLabel.text = "%02d:%02d" % [minutes, secs]
+	if timer_digits == null:
+		timer_digits = get_tree().get_first_node_in_group("timer_digits") as Node2D
+	timer_digits._update_timer_sprites(time_left)
 
 func _on_time_up() -> void:
-	timerLabel.text = "00:00"
 	print("Время вышло!")
-
 
 func _startGame() -> void:
 	if get_tree().paused:

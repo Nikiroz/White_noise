@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dswvkjs2o1geb"]
+
+[ext_resource type="Shader" uid="uid://devr1bmn4mlx0" path="res://shaders/outline.gdshader" id="1_2kaya"]
+
+[resource]
+shader = ExtResource("1_2kaya")
+shader_parameter/enabled = false
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+shader_parameter/type = 1
+shader_parameter/thickness = 2.0
+shader_parameter/intensity = 1.0

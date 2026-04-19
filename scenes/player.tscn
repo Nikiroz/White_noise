@@ -181,7 +181,7 @@ animations = [{
 radius = 22.0
 height = 100.0
 
-[node name="Player" type="CharacterBody2D" unique_id=2090725595]
+[node name="Player" type="CharacterBody2D" unique_id=2090725595 groups=["player"]]
 script = ExtResource("1_qhqgy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=568776571]

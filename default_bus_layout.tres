@@ -1,5 +1,9 @@
 [gd_resource type="AudioBusLayout" format=3 uid="uid://ci57mo18yk8nh"]
 
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_j3pel"]
+resource_name = "LowPassFilter"
+cutoff_hz = 400.0
+
 [resource]
 bus/1/name = &"Music"
 bus/1/solo = false
@@ -13,3 +17,11 @@ bus/2/mute = false
 bus/2/bypass_fx = false
 bus/2/volume_db = 0.0
 bus/2/send = &"Master"
+bus/3/name = &"Ambient"
+bus/3/solo = false
+bus/3/mute = false
+bus/3/bypass_fx = false
+bus/3/volume_db = 0.0
+bus/3/send = &"Sfx"
+bus/3/effect/0/effect = SubResource("AudioEffectLowPassFilter_j3pel")
+bus/3/effect/0/enabled = false
