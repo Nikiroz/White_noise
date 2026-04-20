@@ -10,12 +10,14 @@ config_version=5
 
 [application]
 
-config/name="Ludum59"
+config/name="White noise"
+config/description="You don’t remember who you are. You don’t remember how you got here. Fighting your way through a blinding white storm, you found shelter."
+config/version="1.0"
 run/main_scene="uid://5r8antk0epuc"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/bg_color=Color(0.08627451, 0.18431373, 0.3372549, 1)
 boot_splash/image="uid://didb6c3x1b3gs"
-config/icon="res://sprites/icon.svg"
+config/icon="uid://bqvrwym5lcl5r"
 
 [audio]
 
@@ -31,7 +33,6 @@ MenuController="*uid://bdihc2jwd0u3q"
 window/size/viewport_width=948
 window/size/viewport_height=533
 window/size/resizable=false
-window/size/window_width_override=1280
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 mouse_cursor/custom_image="uid://blipaivgjbt0y"
