@@ -17,6 +17,9 @@ var current_ladder: Area2D = null
 var can_move := true
 
 func set_can_move(v: bool) -> void:
+	if GameController.isEnd:
+		can_move = not GameController.isNuke
+		return
 	can_move = v
 	if not can_move:
 		velocity.x = 0.0

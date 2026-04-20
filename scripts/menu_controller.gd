@@ -24,6 +24,8 @@ func _hide_settings() -> void:
 	_containerSettings.visible = false
 	
 func _show_pause() -> void:
+	if GameController.isEnd:
+		return
 	_menuSettings.visible = true
 	_containerPause.visible = true
 	_containerSettings.visible = false

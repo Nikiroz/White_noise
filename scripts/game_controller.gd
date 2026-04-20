@@ -2,6 +2,7 @@ extends Node
 
 var isMainMenu = true
 var mainMenu: Control
+var endingScene: Control
 var fade: TextureRect
 var mat: ShaderMaterial
 var music_player: AudioStreamPlayer
@@ -14,10 +15,12 @@ var time_total: float = 180.0
 var time_left: float = time_total
 var code = 0
 var isBlockInteraction = false
+var isEnd = false
 var isStartPanic := false
 var radio_code: String = ""
 var idx := AudioServer.get_bus_index("Ambient");
 var global_light : CanvasModulate
+var isNuke = false
 
 func set_radio_code(code: String) -> void:
 	radio_code = code
@@ -36,6 +39,7 @@ func fade_in(duration := 0.5) -> void:
 func _cache_ui() -> void:
 	var scene := get_tree().current_scene
 	mainMenu = scene.get_node("UI/Control/MainMenuBg") as Control
+	endingScene = scene.get_node("UI/EndingScene") as Control
 	fade = scene.get_node("UI/Control/Fade") as TextureRect
 	mat = fade.material as ShaderMaterial
 	timer_digits = scene.get_node("Scene/TimerDigits") as Node2D
@@ -120,11 +124,18 @@ func _update_label() -> void:
 
 func _on_time_up() -> void:
 	time_left = 0
+	timer.stop()
+	timer.wait_time = 0.1
 	_update_label()
 	isBlockInteraction = true;
-	for n in get_tree().current_scene.find_children("*", "CustomTerminal", true, false):
-		if n:
-			n._escape()
+	if not isNuke:
+		for n in get_tree().current_scene.find_children("*", "CustomTerminal", true, false):
+					if n:
+						n._escape()
+		var p := get_tree().get_first_node_in_group("player")
+	
+		if p:
+			p.set_can_move(true)
 	for n in get_tree().current_scene.find_children("*", "CustomRadio", true, false):
 		if n:
 			n._escape()
@@ -159,12 +170,17 @@ func on_terminal_success() -> void:
 		if idx != -1:
 			var db := AudioServer.get_bus_volume_db(idx)
 			AudioServer.set_bus_volume_db(idx, db + 6.0206)
-	print("Good end")
+	_start_nuke()
 	
 func end() -> void:
+	var p := get_tree().get_first_node_in_group("player")
+	if p:
+		p.set_can_move(false)
 	print("Bad end")
 
 func _start_panic() -> void:
+	isEnd=true
+	
 	global_light.start_fade()
 	if idx != -1:
 		var db := AudioServer.get_bus_volume_db(idx)
@@ -180,3 +196,25 @@ func _start_panic() -> void:
 			play_one_shot(preload("res://sounds/suicide_gun_shot.mp3"))
 			end()
 	)
+func _start_nuke()->void:
+	isEnd=true
+	isNuke = true
+	_on_time_up()
+	var p := get_tree().get_first_node_in_group("player")
+	if p:
+		p.set_can_move(false)
+	print("Good end")
+	var scene := get_tree().current_scene
+	fade = scene.get_node("UI/Control/FadeWhite") as TextureRect
+	fade_in(13)
+	ambient_player2.stop()
+	play_one_shot_cb(
+		preload("res://sounds/nuke.mp3"),
+		func():
+			for n in get_tree().current_scene.find_children("*", "CustomTerminal", true, false):
+				if n:
+					n._escape()
+			endingScene.show()
+			fade_out(5)
+	)
+	

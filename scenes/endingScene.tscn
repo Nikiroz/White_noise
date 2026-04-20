@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://so63lvdh12q3"]
+
+[ext_resource type="Texture2D" uid="uid://c1xwjxutlnria" path="res://references/ending.png" id="1_3mmap"]
+[ext_resource type="FontFile" uid="uid://vcx3t2gqfd6" path="res://font/PixelOperator-Bold.ttf" id="2_xvunt"]
+[ext_resource type="Texture2D" uid="uid://chjt3vtb6rvo7" path="res://references/snow.png" id="3_jloyv"]
+
+[sub_resource type="Gradient" id="Gradient_xvunt"]
+offsets = PackedFloat32Array(0.015686275, 0.98039216)
+colors = PackedColorArray(0.31061712, 0.31061712, 0.3106171, 0.49803922, 1, 1, 1, 0.21568628)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jloyv"]
+gradient = SubResource("Gradient_xvunt")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.24786325, 0.6965812)
+
+[sub_resource type="LabelSettings" id="LabelSettings_b102r"]
+font = ExtResource("2_xvunt")
+font_size = 64
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 14
+shadow_color = Color(0.07058824, 0.09803922, 0.16470589, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rty3s"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(600, 20, 1)
+direction = Vector3(1, 1, 0)
+spread = 50.0
+initial_velocity_min = 200.0
+initial_velocity_max = 500.0
+gravity = Vector3(80, 200, 0)
+scale_min = 0.9
+scale_max = 1.1999999
+
+[node name="EndingScene" type="Control" unique_id=38897912]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMenuBg" type="Panel" parent="." unique_id=1728003752]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bg" type="TextureRect" parent="MainMenuBg" unique_id=1059916272]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_3mmap")
+stretch_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="MainMenuBg" unique_id=752134082]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 2.0
+offset_right = 950.0
+offset_bottom = 537.0
+texture = SubResource("GradientTexture2D_jloyv")
+
+[node name="Name" type="Label" parent="MainMenuBg" unique_id=1040636419]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 208.0
+offset_top = -177.5
+offset_right = 208.0
+offset_bottom = -113.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_xvunt")
+theme_override_font_sizes/font_size = 60
+text = "The end"
+label_settings = SubResource("LabelSettings_b102r")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="MainMenuBg" unique_id=1581743432]
+position = Vector2(345, -2)
+amount = 100
+texture = ExtResource("3_jloyv")
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_rty3s")

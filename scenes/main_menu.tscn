@@ -16,11 +16,11 @@
 [ext_resource type="Script" uid="uid://cty874etsje8b" path="res://scripts/back.gd" id="12_j7ex8"]
 [ext_resource type="Shader" uid="uid://dmuc4hai33lql" path="res://shaders/fade_shader.gdshader" id="16_5pajh"]
 
-[sub_resource type="Gradient" id="Gradient_l6cm7"]
+[sub_resource type="Gradient" id="Gradient_7b55j"]
 colors = PackedColorArray(0, 0, 0, 0.7490196, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ekxnf"]
-gradient = SubResource("Gradient_l6cm7")
+gradient = SubResource("Gradient_7b55j")
 fill_from = Vector2(1, 0.9)
 fill_to = Vector2(1, 0.5)
 
@@ -35,13 +35,13 @@ func _on_pressed() -> void:
 offsets = PackedFloat32Array(0, 0.31343284, 0.32089552, 0.6119403, 1)
 colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.3989968, 0, 0, 0, 0.49019608, 0, 0, 0, 0.49019608, 0, 0, 0, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_jk1qb"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5pajh"]
 gradient = SubResource("Gradient_tbmy8")
 fill_from = Vector2(0.97979796, 1)
 fill_to = Vector2(1, 0.22222222)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5dd4i"]
-texture = SubResource("GradientTexture2D_jk1qb")
+texture = SubResource("GradientTexture2D_5pajh")
 
 [sub_resource type="LabelSettings" id="LabelSettings_oa1go"]
 font = ExtResource("4_rtw2f")
@@ -103,11 +103,18 @@ VBoxContainer/constants/separation = 8
 shader = ExtResource("16_5pajh")
 shader_parameter/fade = 1.0
 
-[sub_resource type="Gradient" id="Gradient_5dd4i"]
+[sub_resource type="Gradient" id="Gradient_j7ex8"]
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_lgwnu"]
+gradient = SubResource("Gradient_j7ex8")
+
+[sub_resource type="Gradient" id="Gradient_5dd4i"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7b55j"]
 gradient = SubResource("Gradient_5dd4i")
 
 [node name="Control" type="Control" unique_id=166247087]
@@ -461,6 +468,19 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("GradientTexture1D_lgwnu")
+
+[node name="FadeWhite" type="TextureRect" parent="." unique_id=686699795]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_j7ex8")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture1D_7b55j")
 
 [node name="UiPlayer" type="AudioStreamPlayer" parent="." unique_id=49969641]
 unique_name_in_owner = true

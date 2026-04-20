@@ -78,7 +78,7 @@ size = Vector2(57, 84)
 
 [sub_resource type="Gradient" id="Gradient_qkxt3"]
 offsets = PackedFloat32Array(0.43529412, 0.64705884, 0.8352941)
-colors = PackedColorArray(0.06309926, 0.37473646, 2.3343415e-05, 1, 0.11475408, 0.11475408, 0.11475408, 1, 0, 0, 0, 1)
+colors = PackedColorArray(0.009865047, 0.13792366, 3.5737082e-06, 1, 0.11475408, 0.11475408, 0.11475408, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_qkxt3"]
 gradient = SubResource("Gradient_qkxt3")
@@ -102,8 +102,8 @@ data = PackedByteArray("/+NIxAAAAAAAAAAAAFhpbmcAAAAPAAACkAACUJgAAwUICw0QEhUYGh0g
 loop = true
 
 [sub_resource type="Gradient" id="Gradient_2c8o0"]
-offsets = PackedFloat32Array(0.43529412, 0.64705884, 0.8352941)
-colors = PackedColorArray(0.3461332, 0.3797965, 0.10055413, 1, 0.11475408, 0.11475408, 0.11475408, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0.42352942, 0.8352941)
+colors = PackedColorArray(0.036367446, 0.043974124, 0.0037435135, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_2c8o0"]
 gradient = SubResource("Gradient_2c8o0")
@@ -240,6 +240,7 @@ shape = SubResource("RectangleShape2D_5yiy0")
 debug_color = Color(0.63958746, 0.36891115, 0.94282705, 0.41960785)
 
 [node name="PointLight2D" type="PointLight2D" parent="Terminal" unique_id=525359697]
+visible = false
 light_mask = 2
 position = Vector2(-6, -22)
 scale = Vector2(1.1219254, 1.1402059)

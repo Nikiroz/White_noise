@@ -100,10 +100,10 @@ func _entered() -> void:
 	var correct: String = GameController.radio_code
 
 	if buffer == correct:
-		out.append_text("true\n")
+		out.append_text("God appears and God is light...\n")
 		GameController.on_terminal_success()
 	else:
-		out.append_text("false\n")
+		out.append_text("Wrong numbers\n")
 		# Если хочешь подсказку (сколько позиций совпало) — раскомментируй:
 
 
