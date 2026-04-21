@@ -13,15 +13,15 @@
 [ext_resource type="Texture2D" uid="uid://pf45vo0engjj" path="res://sprites/terminal.png" id="9_7ftgl"]
 [ext_resource type="Material" uid="uid://dswvkjs2o1geb" path="res://shaders/sh_outline.tres" id="9_dqloj"]
 [ext_resource type="AudioStream" uid="uid://yrn72nw53aqa" path="res://sounds/radio_stream_generator.tres" id="12_0f71q"]
-[ext_resource type="Script" uid="uid://bficqqv0buqb4" path="res://scripts/radio.gd" id="12_8cc7s"]
-[ext_resource type="Script" uid="uid://qssr5y85mqlu" path="res://scripts/noise.gd" id="13_1id6j"]
+[ext_resource type="Script" uid="uid://bficqqv0buqb4" path="res://scripts/radio/radio.gd" id="12_8cc7s"]
+[ext_resource type="Script" uid="uid://qssr5y85mqlu" path="res://scripts/radio/noise.gd" id="13_1id6j"]
 [ext_resource type="Shader" uid="uid://devr1bmn4mlx0" path="res://shaders/outline.gdshader" id="13_2v74y"]
 [ext_resource type="Texture2D" uid="uid://dlcemnejt6eat" path="res://sprites/radio.png" id="13_r2e7w"]
 [ext_resource type="AudioStream" uid="uid://c211srls5heqv" path="res://sounds/music/radio_music.wav" id="15_8cc7s"]
 [ext_resource type="Script" uid="uid://nr3newyg8fb2" path="res://scripts/signal_player.gd" id="15_tvkk6"]
 [ext_resource type="AudioStream" uid="uid://bvwmvfhtlvck4" path="res://sounds/eng/bup.wav" id="18_nj6dk"]
 [ext_resource type="AudioStream" uid="uid://cmiu601tgwrwm" path="res://sounds/eng/websdr_recording_start_2025-01-01T22_07_19Z_14600.0kHz.mp3" id="19_c7gmr"]
-[ext_resource type="Script" uid="uid://37qt6tj1duok" path="res://scripts/music_player.gd" id="19_fsfa6"]
+[ext_resource type="Script" uid="uid://37qt6tj1duok" path="res://scripts/radio/music_player.gd" id="19_fsfa6"]
 [ext_resource type="AudioStream" uid="uid://cm7et54ixgvuj" path="res://sounds/eng/0.wav" id="19_qkxt3"]
 [ext_resource type="AudioStream" uid="uid://c28lpajwyvwvc" path="res://sounds/eng/1.wav" id="20_2c8o0"]
 [ext_resource type="AudioStream" uid="uid://cgijt2y2x0qwe" path="res://sounds/eng/2.wav" id="21_ku3iu"]
@@ -68,7 +68,7 @@ size = Vector2(820, 20)
 size = Vector2(931.75, 45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7182s"]
-size = Vector2(58, 165)
+size = Vector2(58, 171)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tpwpp"]
 size = Vector2(71, 22)
@@ -149,7 +149,6 @@ shape = SubResource("RectangleShape2D_dqloj")
 debug_color = Color(0.64998055, 0.5201093, 0.0146001745, 0.41960785)
 
 [node name="Collisions" type="Node2D" parent="." unique_id=1904244257]
-visible = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Collisions" unique_id=245211171]
 position = Vector2(920, 340)
@@ -176,7 +175,7 @@ collision_layer = 4
 script = ExtResource("6_t7and")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/Ladder" unique_id=759242106]
-position = Vector2(-5, 64.5)
+position = Vector2(-5, 61.5)
 shape = SubResource("RectangleShape2D_7182s")
 debug_color = Color(0.9584257, 3.080368e-06, 0.5298511, 0.41960785)
 
@@ -318,6 +317,7 @@ collision_mask = 3
 
 [node name="globalLight" type="CanvasModulate" parent="." unique_id=549668041]
 unique_name_in_owner = true
+visible = false
 color = Color(0, 0, 0, 1)
 script = ExtResource("33_qkxt3")
 target_darkness = 1.0

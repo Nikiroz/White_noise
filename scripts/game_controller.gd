@@ -213,7 +213,7 @@ func _start_nuke()->void:
 		func():
 			for n in get_tree().current_scene.find_children("*", "CustomTerminal", true, false):
 				if n:
-					n._escape()
+					n._escaape()
 			endingScene.show()
 			fade_out(5)
 	)
