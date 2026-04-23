@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://bmv7i4cxm3rp6" path="res://scripts/terminal/terninal.gd" id="1_2af5o"]
 [ext_resource type="Texture2D" uid="uid://da8fphhq731aa" path="res://sprites/ui_blank.png" id="1_e5fqe"]
 [ext_resource type="Theme" uid="uid://d0o6iq3og730v" path="res://styles/terminal.tres" id="3_dhh7i"]
-[ext_resource type="Script" uid="uid://b7s1ibhdrtpt1" path="res://scripts/timer_terminal.gd" id="4_8ohbp"]
+[ext_resource type="Script" uid="uid://b7s1ibhdrtpt1" path="res://scripts/terminal/timer_terminal.gd" id="4_8ohbp"]
 [ext_resource type="Texture2D" uid="uid://cve0254kpls87" path="res://sprites/ui_blank_2.png" id="4_j4jqg"]
 [ext_resource type="Script" uid="uid://dqqqkbh50cmme" path="res://scripts/terminal/back_terminal.gd" id="6_0yy3c"]
-[ext_resource type="Script" uid="uid://cbo8640nqrl51" path="res://scripts/terminal_button.gd" id="6_j4jqg"]
+[ext_resource type="Script" uid="uid://cbo8640nqrl51" path="res://scripts/terminal/terminal_button.gd" id="6_j4jqg"]
 [ext_resource type="FontFile" uid="uid://vcx3t2gqfd6" path="res://font/PixelOperator-Bold.ttf" id="7_8ohbp"]
 
 [sub_resource type="Gradient" id="Gradient_lgwnu"]

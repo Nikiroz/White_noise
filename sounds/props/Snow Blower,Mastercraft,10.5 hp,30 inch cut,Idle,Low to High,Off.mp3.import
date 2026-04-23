@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dts8o5k5yn3r"
+path="res://.godot/imported/Snow Blower,Mastercraft,10.5 hp,30 inch cut,Idle,Low to High,Off.mp3-d2f80a7b0df65b9b934549f690d9cbea.mp3str"
+
+[deps]
+
+source_file="res://sounds/props/Snow Blower,Mastercraft,10.5 hp,30 inch cut,Idle,Low to High,Off.mp3"
+dest_files=["res://.godot/imported/Snow Blower,Mastercraft,10.5 hp,30 inch cut,Idle,Low to High,Off.mp3-d2f80a7b0df65b9b934549f690d9cbea.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

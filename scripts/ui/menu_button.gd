@@ -6,7 +6,7 @@ func _ready() -> void:
 	pressed.connect(_on_pressed)
 
 func _on_hover() -> void:
-	GameController.play_one_shot(preload("res://sounds/click.wav"))
+	GameController.play_one_shot(preload("res://sounds/ui/click.wav"))
 
 func _on_pressed() -> void:
-	GameController.play_one_shot(preload("res://sounds/click_2.wav"))
+	GameController.play_one_shot(preload("res://sounds/ui/click_2.wav"))

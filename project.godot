@@ -37,6 +37,14 @@ window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 mouse_cursor/custom_image="uid://blipaivgjbt0y"
 
+[file_customization]
+
+folder_colors={
+"res://scripts/": "red",
+"res://sounds/": "purple",
+"res://sprites/": "green"
+}
+
 [global_group]
 
 player=""

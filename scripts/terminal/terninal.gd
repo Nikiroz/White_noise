@@ -27,7 +27,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		var digit := _digit_from_keycode(key.keycode)
 		if digit != "":
 			if buffer.length() < MAX_LEN:
-				GameController.play_one_shot(preload("res://sounds/Keyboard.mp3"))
+				GameController.play_one_shot(preload("res://sounds/ui/Keyboard.mp3"))
 				buffer += digit
 				_refresh()
 			get_viewport().set_input_as_handled()

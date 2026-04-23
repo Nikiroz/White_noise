@@ -91,7 +91,7 @@ func _try_apply_steps(delta_steps: int) -> void:
 
 	if new_value > max_value or new_value < min_value:
 		if not reached_end_once:
-			GameController.play_one_shot(preload("res://sounds/radio-button-click.mp3"))
+			GameController.play_one_shot(preload("res://sounds/ui/radio-button-click.mp3"))
 			reached_end_once = true
 		return
 

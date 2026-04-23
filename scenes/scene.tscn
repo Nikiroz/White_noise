@@ -1,7 +1,9 @@
 [gd_scene format=4 uid="uid://gc5ojvigf81x"]
 
-[ext_resource type="Texture2D" uid="uid://dih2kd8amo2il" path="res://references/home.png" id="2_7182s"]
-[ext_resource type="Texture2D" uid="uid://uioro7fhpprl" path="res://references/game.png" id="2_cg05x"]
+[ext_resource type="Texture2D" uid="uid://bpeaxaopn2im" path="res://sprites/blizzard.png" id="2_2c8o0"]
+[ext_resource type="Texture2D" uid="uid://dih2kd8amo2il" path="res://sprites/home.png" id="2_7182s"]
+[ext_resource type="Texture2D" uid="uid://uioro7fhpprl" path="res://sprites/game.png" id="2_cg05x"]
+[ext_resource type="Shader" uid="uid://c2878fvv1aybi" path="res://shaders/blizzard.gdshader" id="2_ku3iu"]
 [ext_resource type="Script" uid="uid://cd866p23yv37e" path="res://scripts/zone_outside.gd" id="2_ruw3y"]
 [ext_resource type="Texture2D" uid="uid://chjt3vtb6rvo7" path="res://references/snow.png" id="2_tpwpp"]
 [ext_resource type="PackedScene" uid="uid://x3pgmlqai6fr" path="res://scenes/player.tscn" id="5_gjmho"]
@@ -9,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cg8hdsespmb2a" path="res://references/timer.png" id="7_ruw3y"]
 [ext_resource type="Texture2D" uid="uid://wckjkk2p0tba" path="res://references/numbers.png" id="8_7182s"]
 [ext_resource type="Script" uid="uid://2vf6jcvvewka" path="res://scripts/timer_digits.gd" id="8_tpwpp"]
-[ext_resource type="Script" uid="uid://1a2h0o82vbfk" path="res://scripts/terminal_obj.gd" id="9_5yiy0"]
+[ext_resource type="Script" uid="uid://1a2h0o82vbfk" path="res://scripts/terminal/terminal_obj.gd" id="9_5yiy0"]
 [ext_resource type="Texture2D" uid="uid://pf45vo0engjj" path="res://sprites/terminal.png" id="9_7ftgl"]
 [ext_resource type="Material" uid="uid://dswvkjs2o1geb" path="res://shaders/sh_outline.tres" id="9_dqloj"]
 [ext_resource type="AudioStream" uid="uid://yrn72nw53aqa" path="res://sounds/radio_stream_generator.tres" id="12_0f71q"]
@@ -18,29 +20,36 @@
 [ext_resource type="Shader" uid="uid://devr1bmn4mlx0" path="res://shaders/outline.gdshader" id="13_2v74y"]
 [ext_resource type="Texture2D" uid="uid://dlcemnejt6eat" path="res://sprites/radio.png" id="13_r2e7w"]
 [ext_resource type="AudioStream" uid="uid://c211srls5heqv" path="res://sounds/music/radio_music.wav" id="15_8cc7s"]
-[ext_resource type="Script" uid="uid://nr3newyg8fb2" path="res://scripts/signal_player.gd" id="15_tvkk6"]
-[ext_resource type="AudioStream" uid="uid://bvwmvfhtlvck4" path="res://sounds/eng/bup.wav" id="18_nj6dk"]
-[ext_resource type="AudioStream" uid="uid://cmiu601tgwrwm" path="res://sounds/eng/websdr_recording_start_2025-01-01T22_07_19Z_14600.0kHz.mp3" id="19_c7gmr"]
+[ext_resource type="Script" uid="uid://nr3newyg8fb2" path="res://scripts/radio/signal_player.gd" id="15_tvkk6"]
+[ext_resource type="AudioStream" uid="uid://bvwmvfhtlvck4" path="res://sounds/radio/eng/bup.wav" id="18_nj6dk"]
+[ext_resource type="AudioStream" uid="uid://cmiu601tgwrwm" path="res://sounds/radio/websdr_recording_start_2025-01-01T22_07_19Z_14600.0kHz.mp3" id="19_c7gmr"]
 [ext_resource type="Script" uid="uid://37qt6tj1duok" path="res://scripts/radio/music_player.gd" id="19_fsfa6"]
-[ext_resource type="AudioStream" uid="uid://cm7et54ixgvuj" path="res://sounds/eng/0.wav" id="19_qkxt3"]
-[ext_resource type="AudioStream" uid="uid://c28lpajwyvwvc" path="res://sounds/eng/1.wav" id="20_2c8o0"]
-[ext_resource type="AudioStream" uid="uid://cgijt2y2x0qwe" path="res://sounds/eng/2.wav" id="21_ku3iu"]
-[ext_resource type="AudioStream" uid="uid://bljf7fyjqcli2" path="res://sounds/eng/3.wav" id="22_qvqk7"]
-[ext_resource type="AudioStream" uid="uid://dex7eyrricacg" path="res://sounds/eng/4.wav" id="23_qi1fb"]
-[ext_resource type="AudioStream" uid="uid://hw0dcufvqevt" path="res://sounds/eng/5.wav" id="24_yry7n"]
-[ext_resource type="AudioStream" uid="uid://b5k1emfi2dsxg" path="res://sounds/eng/6.wav" id="25_xbd8g"]
-[ext_resource type="AudioStream" uid="uid://d2xhaefaih50t" path="res://sounds/eng/7.wav" id="26_optcd"]
-[ext_resource type="AudioStream" uid="uid://bth03chul0rr0" path="res://sounds/eng/8.wav" id="27_lyc5t"]
-[ext_resource type="AudioStream" uid="uid://cnl7sg6on85c3" path="res://sounds/eng/9.wav" id="28_x2w5o"]
+[ext_resource type="AudioStream" uid="uid://cm7et54ixgvuj" path="res://sounds/radio/eng/0.wav" id="19_qkxt3"]
+[ext_resource type="AudioStream" uid="uid://c28lpajwyvwvc" path="res://sounds/radio/eng/1.wav" id="20_2c8o0"]
+[ext_resource type="AudioStream" uid="uid://cgijt2y2x0qwe" path="res://sounds/radio/eng/2.wav" id="21_ku3iu"]
+[ext_resource type="AudioStream" uid="uid://bljf7fyjqcli2" path="res://sounds/radio/eng/3.wav" id="22_qvqk7"]
+[ext_resource type="AudioStream" uid="uid://dex7eyrricacg" path="res://sounds/radio/eng/4.wav" id="23_qi1fb"]
+[ext_resource type="AudioStream" uid="uid://hw0dcufvqevt" path="res://sounds/radio/eng/5.wav" id="24_yry7n"]
+[ext_resource type="AudioStream" uid="uid://b5k1emfi2dsxg" path="res://sounds/radio/eng/6.wav" id="25_xbd8g"]
+[ext_resource type="AudioStream" uid="uid://d2xhaefaih50t" path="res://sounds/radio/eng/7.wav" id="26_optcd"]
+[ext_resource type="AudioStream" uid="uid://bth03chul0rr0" path="res://sounds/radio/eng/8.wav" id="27_lyc5t"]
+[ext_resource type="AudioStream" uid="uid://cnl7sg6on85c3" path="res://sounds/radio/eng/9.wav" id="28_x2w5o"]
 [ext_resource type="Script" uid="uid://fqcpm2m45wet" path="res://scenes/canvas_modulate.gd" id="33_qkxt3"]
 
-[sub_resource type="Gradient" id="Gradient_tpwpp"]
-colors = PackedColorArray(0.65882355, 0.65882355, 0.65882355, 0.17254902, 1, 1, 1, 0.5647059)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qvqk7"]
+shader = ExtResource("2_ku3iu")
+shader_parameter/base_color = Color(0.77254903, 0.85882354, 0.972549, 1)
+shader_parameter/noise_dark_color = Color(0, 0, 0, 1)
+shader_parameter/noise_bright_color = Color(0.77254903, 0.85882354, 0.972549, 1)
+shader_parameter/noise_scale = 3.0
+shader_parameter/noise_strength = 0.2000000095
+shader_parameter/alpha_min = 0.30000001425
+shader_parameter/alpha_max = 1.0
+shader_parameter/speed = 1.0
+shader_parameter/direction = Vector2(1, -0.2)
+shader_parameter/octaves = 8
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_7ftgl"]
-gradient = SubResource("Gradient_tpwpp")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tpwpp"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ku3iu"]
 particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(600, 20, 1)
@@ -117,16 +126,19 @@ position = Vector2(476, 266)
 texture = ExtResource("2_cg05x")
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=954915718]
-position = Vector2(484, 174)
-scale = Vector2(15.28125, 5.375)
-texture = SubResource("GradientTexture2D_7ftgl")
+material = SubResource("ShaderMaterial_qvqk7")
+position = Vector2(476, 266)
+scale = Vector2(1.04, 1.04)
+texture = ExtResource("2_2c8o0")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=440987960]
-position = Vector2(456, -26)
-amount = 100
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=611667762]
+position = Vector2(417, -27)
+scale = Vector2(1.04, 1.04)
+amount = 200
+amount_ratio = 0.5
 texture = ExtResource("2_tpwpp")
 randomness = 1.0
-process_material = SubResource("ParticleProcessMaterial_tpwpp")
+process_material = SubResource("ParticleProcessMaterial_ku3iu")
 
 [node name="Game" type="Sprite2D" parent="." unique_id=1040827024]
 position = Vector2(476, 266)

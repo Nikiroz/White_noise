@@ -89,8 +89,8 @@ func _init_menu() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	await get_tree().process_frame
 	_cache_ui()
-	ambient_player1 = play_loop(preload("res://sounds/Blizzard.mp3"),"Ambient")
-	ambient_player2 = play_loop(preload("res://sounds/Forest.mp3"),"Ambient")
+	ambient_player1 = play_loop(preload("res://sounds/ambient/Blizzard.mp3"),"Ambient")
+	ambient_player2 = play_loop(preload("res://sounds/ambient/Forest.mp3"),"Ambient")
 	music_player = play_loop(preload("res://sounds/music/ambient_main_menu.mp3"),"Music")
 	timer = Timer.new()
 	timer.one_shot = true
@@ -144,7 +144,7 @@ func _on_time_up() -> void:
 func _startGame() -> void:
 	if get_tree().paused:
 		get_tree().paused = false
-	play_one_shot(preload("res://sounds/StartHit.mp3"))
+	play_one_shot(preload("res://sounds/ui/StartHit.mp3"))
 	if music_player:
 		music_player.stop()
 		music_player = play_loop(preload("res://sounds/music/ambient_normal.mp3"),"Music")
@@ -155,7 +155,7 @@ func _startGame() -> void:
 	
 func _returnToMainMenu() -> void:
 	get_tree().paused = true
-	play_one_shot(preload("res://sounds/StartHit.mp3"))
+	play_one_shot(preload("res://sounds/ui/StartHit.mp3"))
 	if music_player:
 		music_player.stop()
 		music_player = play_loop(preload("res://sounds/music/ambient_main_menu.mp3"),"Music")
@@ -187,13 +187,13 @@ func _start_panic() -> void:
 		AudioServer.set_bus_volume_db(idx, db - 6.0206)
 	isStartPanic = true
 	panic_player = play_one_shot_cb(
-		preload("res://sounds/eng/panic.mp3"),
+		preload("res://sounds/player/panic.mp3"),
 		func():
 			music_player.stop()
 			ambient_player1.stop()
 			ambient_player2.stop()
 			fade_in(0.01)
-			play_one_shot(preload("res://sounds/suicide_gun_shot.mp3"))
+			play_one_shot(preload("res://sounds/player/suicide_gun_shot.mp3"))
 			end()
 	)
 func _start_nuke()->void:
