@@ -6,4 +6,7 @@ func _process(delta: float) -> void:
 	var seconds := int(ceil(time_left))
 	var minutes := seconds / 60
 	var secs := seconds % 60
-	text = "%02d:%02d" % [minutes, secs]
+	if not GameController.isNuke:
+		text = "%02d:%02d" % [minutes, secs]
+	else:
+		text = "God appears and God is light\n"

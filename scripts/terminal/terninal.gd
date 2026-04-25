@@ -5,8 +5,6 @@ class_name CustomTerminal
 @onready var inp: Label = %Input
 @onready var keys: GridContainer = %Keys
 
-# Длина кода. Лучше держать в одном месте.
-# Если у тебя генерится 7-значный код — ставь 7.
 const MAX_LEN := 7
 
 var buffer := ""
@@ -100,10 +98,10 @@ func _entered() -> void:
 	var correct: String = GameController.radio_code
 
 	if buffer == correct:
-		out.append_text("God appears and God is light...\n")
+		out.append_text("Right!\n")
 		GameController.on_terminal_success()
 	else:
-		out.append_text("Wrong numbers\n")
+		out.append_text("Wrong numbers!\n")
 		# Если хочешь подсказку (сколько позиций совпало) — раскомментируй:
 
 

@@ -58,10 +58,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -117.0
-offset_top = -133.5
-offset_right = 119.0
-offset_bottom = 134.5
+offset_left = -129.0
+offset_top = -166.5
+offset_right = 131.0
+offset_bottom = 168.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_8ohbp")
@@ -71,7 +71,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 54.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 6
@@ -109,7 +108,8 @@ theme_override_constants/margin_bottom = 20
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Crt/MarginContainer" unique_id=1015051505]
 layout_mode = 2
 
-[node name="Timer" type="Label" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Crt/MarginContainer/VBoxContainer" unique_id=1595841563]
+[node name="TimerText" type="Label" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Crt/MarginContainer/VBoxContainer" unique_id=1595841563]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_dhh7i")
 text = "00:00"
@@ -140,7 +140,7 @@ theme = ExtResource("3_dhh7i")
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("4_j4jqg")
-region_rect = Rect2(0, 0, 60.014378, 60.06906)
+region_rect = Rect2(0, 0, 60, 60)
 patch_margin_left = 12
 patch_margin_top = 12
 patch_margin_right = 12
@@ -149,14 +149,19 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Keyboard" unique_id=1201805103]
-layout_mode = 0
-offset_top = -12.0
-offset_right = 224.0
-offset_bottom = 105.0
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 17
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 0
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -76.0
+offset_bottom = 76.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer/SettingsContainer/MarginContainer/VBoxContainer2/Keyboard/MarginContainer" unique_id=254322375]
 layout_mode = 2

@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://dhjbokyrgr0gj"]
 
-[ext_resource type="Script" uid="uid://dg5yi48qsa7qd" path="res://scenes/radio.gd" id="1_3mpwk"]
+[ext_resource type="Script" uid="uid://dg5yi48qsa7qd" path="res://scripts/radio.gd" id="1_3mpwk"]
 [ext_resource type="Texture2D" uid="uid://jwe7ki0tmvbw" path="res://sprites/radio_bg.png" id="2_ldjbc"]
 [ext_resource type="Texture2D" uid="uid://b7yqoodoehma3" path="res://sprites/radio_bg_2.png" id="3_7h80l"]
 [ext_resource type="Texture2D" uid="uid://isrhker0x1k3" path="res://sprites/knob.png" id="4_4b7o3"]
-[ext_resource type="Script" uid="uid://j5l51xbqmpm4" path="res://scenes/wave_game.gd" id="4_144bg"]
+[ext_resource type="Script" uid="uid://j5l51xbqmpm4" path="res://scripts/radio/wave_game.gd" id="4_144bg"]
 [ext_resource type="Script" uid="uid://c0q3vekgtqckw" path="res://scripts/radio/knob.gd" id="5_hhhqh"]
 [ext_resource type="Theme" uid="uid://d0o6iq3og730v" path="res://styles/terminal.tres" id="6_uf7ta"]
-[ext_resource type="Script" uid="uid://clx5kw46uq5vr" path="res://scenes/radio_back.gd" id="7_uf7ta"]
+[ext_resource type="Script" uid="uid://clx5kw46uq5vr" path="res://scripts/radio/radio_back.gd" id="7_uf7ta"]
 
 [sub_resource type="Gradient" id="Gradient_lgwnu"]
 offsets = PackedFloat32Array(0)
