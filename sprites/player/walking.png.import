@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6d1el8ovw3tf"
-path="res://.godot/imported/fullscreen_on.png-32516839a92f5f25e602f7d3c713a7f5.ctex"
+uid="uid://3rnqsfqddbf4"
+path="res://.godot/imported/walking.png-d1b0cec9ce809dabdbc719db5a8de51d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/fullscreen_on.png"
-dest_files=["res://.godot/imported/fullscreen_on.png-32516839a92f5f25e602f7d3c713a7f5.ctex"]
+source_file="res://sprites/player/walking.png"
+dest_files=["res://.godot/imported/walking.png-d1b0cec9ce809dabdbc719db5a8de51d.ctex"]
 
 [params]
 

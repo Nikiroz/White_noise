@@ -1,6 +1,7 @@
 extends Node
 
 var isMainMenu = true
+var is_desktop = true
 var mainMenu: Control
 var endingScene: Control
 var fade: TextureRect
@@ -75,11 +76,9 @@ func play_one_shot_cb(stream: AudioStream, on_done: Callable, bus := "Sfx", volu
 	p.process_mode = Node.PROCESS_MODE_ALWAYS
 	add_child(p)
 
-	# 1) твой коллбек
 	if on_done.is_valid():
 		p.finished.connect(on_done)
 
-	# 2) освобождение
 	p.finished.connect(p.queue_free)
 
 	p.play()
@@ -99,7 +98,16 @@ func _init_menu() -> void:
 	timer.timeout.connect(_on_time_up)
 	_update_label()
 
+func is_mobile_web() -> bool:
+	if OS.get_name() != "Web":
+		return false
+
+	#var ua := JavaScriptBridge.eval("navigator.userAgent").to_lower()
+
+	return true
+
 func _ready() -> void:
+	is_desktop = is_mobile_web()
 	get_tree().paused = true
 	_init_menu()
 
@@ -196,6 +204,7 @@ func _start_panic() -> void:
 			play_one_shot(preload("res://sounds/player/suicide_gun_shot.mp3"))
 			end()
 	)
+	
 func _start_nuke()->void:
 	isEnd=true
 	isNuke = true

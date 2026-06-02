@@ -6,7 +6,6 @@
 [ext_resource type="StyleBox" uid="uid://2yud64nvfs3x" path="res://styles/box.tres" id="3_oa1go"]
 [ext_resource type="FontFile" uid="uid://vcx3t2gqfd6" path="res://font/PixelOperator-Bold.ttf" id="4_rtw2f"]
 [ext_resource type="Script" uid="uid://v8qb8pdqch41" path="res://scripts/ui/play.gd" id="5_8egab"]
-[ext_resource type="Texture2D" uid="uid://chjt3vtb6rvo7" path="res://references/snow.png" id="7_7b55j"]
 [ext_resource type="Texture2D" uid="uid://da8fphhq731aa" path="res://sprites/ui_blank.png" id="8_5dd4i"]
 [ext_resource type="LabelSettings" uid="uid://dg61qe0vvvjjj" path="res://styles/hearder.tres" id="8_lgwnu"]
 [ext_resource type="Theme" uid="uid://dydnnht3t578u" path="res://styles/buttons_menus.tres" id="9_5dd4i"]
@@ -15,7 +14,7 @@
 [ext_resource type="Script" uid="uid://blhssw174lbbt" path="res://scripts/ui/restart.gd" id="12_1ajci"]
 [ext_resource type="Script" uid="uid://cty874etsje8b" path="res://scripts/ui/back.gd" id="12_j7ex8"]
 [ext_resource type="Shader" uid="uid://dmuc4hai33lql" path="res://shaders/fade_shader.gdshader" id="16_5pajh"]
-[ext_resource type="Texture2D" uid="uid://b6d1el8ovw3tf" path="res://sprites/fullscreen_on.png" id="16_j7ex8"]
+[ext_resource type="Texture2D" uid="uid://b6d1el8ovw3tf" path="res://sprites/ui/fullscreen_on.png" id="16_j7ex8"]
 [ext_resource type="Script" uid="uid://bnka2ktu43ays" path="res://scripts/ui/fullscreen.gd" id="17_j7ex8"]
 
 [sub_resource type="Gradient" id="Gradient_7b55j"]
@@ -23,8 +22,8 @@ colors = PackedColorArray(0, 0, 0, 0.9843137, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ekxnf"]
 gradient = SubResource("Gradient_7b55j")
-fill_from = Vector2(0.9893162, 0.85683763)
-fill_to = Vector2(1, 0.5)
+fill_from = Vector2(1, 1)
+fill_to = Vector2(0.98504275, 0.60470086)
 
 [sub_resource type="GDScript" id="GDScript_8egab"]
 script/source = "extends Menu_button
@@ -51,18 +50,6 @@ font_size = 64
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 14
 shadow_color = Color(0.07058824, 0.09803922, 0.16470589, 1)
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5pajh"]
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(600, 20, 1)
-direction = Vector3(1, 1, 0)
-spread = 50.0
-initial_velocity_min = 200.0
-initial_velocity_max = 500.0
-gravity = Vector3(80, 200, 0)
-scale_min = 0.9
-scale_max = 1.1999999
 
 [sub_resource type="Gradient" id="Gradient_lgwnu"]
 offsets = PackedFloat32Array(0)
@@ -229,13 +216,6 @@ theme_override_fonts/font = ExtResource("4_rtw2f")
 theme_override_font_sizes/font_size = 60
 text = "White Noise	"
 label_settings = SubResource("LabelSettings_oa1go")
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="MainMenuBg" unique_id=2059968959]
-position = Vector2(314, -27)
-amount = 100
-texture = ExtResource("7_7b55j")
-randomness = 1.0
-process_material = SubResource("ParticleProcessMaterial_5pajh")
 
 [node name="MenuContainer" type="TextureRect" parent="." unique_id=1134957878]
 visible = false
