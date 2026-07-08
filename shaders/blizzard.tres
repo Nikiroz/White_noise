@@ -1,0 +1,158 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bh17um0phcwdr"]
+
+[sub_resource type="Shader" id="Shader_2chmm"]
+code = "shader_type canvas_item;
+
+group_uniforms Wind_Settings;
+
+uniform vec4 base_color : source_color = vec4(0.2, 0.6, 1.0, 1.0);
+uniform vec4 noise_dark_color : source_color = vec4(0.0, 0.0, 0.0, 1.0);
+uniform vec4 noise_bright_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float noise_seed = 0.0;
+uniform float noise_scale = 8.0;
+uniform float noise_strength : hint_range(0.0, 1.0) = 0.5;
+uniform float alpha_min : hint_range(0.0, 1.0) = 0.0;
+uniform float alpha_max : hint_range(0.0, 1.0) = 1.0;
+uniform float speedBlizzard = 0.25;
+uniform vec2 direction = vec2(1.0, 0.0);
+
+group_uniforms Snow_Parameters;
+uniform int octaves = 4;
+uniform float spread : hint_range(0.0, 1.5) = 0.5;
+uniform float size : hint_range(0.01, 5.0) = 0.5;
+uniform vec4 snow_color : source_color = vec4(1.0);
+uniform float snow_transparency: hint_range(-0.5, 1.0) = 0.2;
+uniform float speedSnow : hint_range(0.0, 10.0) = 0.5;
+uniform float wind : hint_range(-2.0, 2.0) = 0.0;
+uniform int num_of_layers = 40; 
+
+const mat3 NOISE_MATRIX = mat3(
+    vec3(13.323122, 23.5112, 21.71123),
+    vec3(21.1212, 28.7312, 11.9312),
+    vec3(21.8112, 14.7212, 61.3934)
+);
+
+float hash(vec2 p) {
+	p += noise_seed * vec2(17.13, 91.77);
+	return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
+}
+
+float noise(vec2 p) {
+	vec2 i = floor(p);
+	vec2 f = fract(p);
+
+	float a = hash(i);
+	float b = hash(i + vec2(1.0, 0.0));
+	float c = hash(i + vec2(0.0, 1.0));
+	float d = hash(i + vec2(1.0, 1.0));
+
+	vec2 u = f * f * (3.0 - 2.0 * f);
+
+	return mix(a, b, u.x) +
+		(c - a) * u.y * (1.0 - u.x) +
+		(d - b) * u.x * u.y;
+}
+
+float fbm(vec2 p) {
+	float value = 0.0;
+	float amplitude = 0.5;
+	float frequency = 1.0;
+
+	for (int i = 0; i < 8; i++) {
+		if (i >= octaves) {
+			break;
+		}
+
+		value += noise(p * frequency) * amplitude;
+		frequency *= 2.0;
+		amplitude *= 0.5;
+	}
+
+	return value;
+}
+
+vec3 generate_snowflake(vec2 coord, float layer_index, float time, float wind_strength) {
+
+    float layer_scale = 1.0 + layer_index * 0.5 / (max(size, 0.01) * 2.0);
+    vec2 scaled_coord = coord * layer_scale;
+
+    vec2 movement = vec2(
+        scaled_coord.y * (spread * mod(layer_index * 7.238917, 1.0) - spread * 0.5) +
+        (-wind_strength) * speedSnow * time * 0.5,
+        -speedSnow * time / (1.0 + layer_index * 0.5 * 0.03)
+    );
+
+    vec2 final_coord = scaled_coord + movement;
+
+    vec3 noise_input = vec3(floor(final_coord), 31.189 + layer_index);
+    vec3 noise_val = floor(noise_input) * 0.00001 + fract(noise_input);
+    vec3 random = fract((31415.9 + noise_val) / fract(NOISE_MATRIX * noise_val));
+
+    // позиция внутри клетки
+    vec2 cell = mod(final_coord, 1.0);
+
+    // случайное смещение снежинки внутри клетки
+    vec2 offset = 0.9 * random.xy - 0.45;
+
+    // локальные координаты относительно центра квадрата
+    vec2 p = cell - 0.5 + offset;
+
+    // квадрат вместо овала
+    float cube_shape = max(abs(p.x), abs(p.y));
+
+    // размер квадрата
+    float cube_size = 0.055;
+
+    // чёткая маска без градиента
+    float mask = 1.0 - step(cube_size, cube_shape);
+
+    // яркость по слоям
+    float brightness = random.x / (1.0 + 0.02 * layer_index * 0.5);
+
+    return vec3(mask * brightness);
+}
+
+void fragment() {
+	vec2 dir = normalize(direction);
+	vec2 moving_uv = UV * noise_scale - dir * TIME * speedBlizzard;
+
+	float n = fbm(moving_uv);
+
+	vec4 noise_color = mix(noise_dark_color, noise_bright_color, n);
+	vec4 final_color = mix(base_color, noise_color, noise_strength);
+
+	float alpha = mix(alpha_min, alpha_max, n);
+	vec3 snow_accumulation = vec3(0.0);
+	
+	COLOR = vec4(final_color.rgb, alpha * base_color.a);
+    
+	for (int i = 0; i < num_of_layers; i++) {
+        snow_accumulation += generate_snowflake(UV, float(i), TIME, wind);
+    }
+
+    float snow_intensity = clamp(length(snow_accumulation), 0.0, 1.0);
+    vec4 transparency_color = vec4(snow_color.rgb * (1.0 + snow_transparency), snow_intensity);
+
+	COLOR = mix(COLOR, transparency_color, snow_intensity);
+}"
+
+[resource]
+shader = SubResource("Shader_2chmm")
+shader_parameter/base_color = Color(0.77254903, 0.85882354, 0.972549, 0.6666667)
+shader_parameter/noise_dark_color = Color(0, 0, 0, 1)
+shader_parameter/noise_bright_color = Color(0.77254903, 0.85882354, 0.972549, 1)
+shader_parameter/noise_seed = 11.675
+shader_parameter/noise_scale = 17.4
+shader_parameter/noise_strength = 0.22400001064
+shader_parameter/alpha_min = 0.3850000182875
+shader_parameter/alpha_max = 0.6000000285
+shader_parameter/speedBlizzard = 6.89
+shader_parameter/direction = Vector2(3.9, -0.2)
+shader_parameter/octaves = 4
+shader_parameter/spread = 0.4450000211375
+shader_parameter/size = 0.07000000262648
+shader_parameter/snow_color = Color(1, 1, 1, 1)
+shader_parameter/snow_transparency = 1.0
+shader_parameter/speedSnow = 2.07600009861
+shader_parameter/wind = 2.0
+shader_parameter/num_of_layers = 10

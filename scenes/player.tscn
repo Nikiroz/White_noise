@@ -11,7 +11,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_dqkch")
 }],
-"loop": true,
+"loop": 1,
 "name": &"climb",
 "speed": 6.0
 }, {
@@ -19,7 +19,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3_dqkch")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
 "speed": 12.0
 }, {
@@ -27,7 +27,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4_qlg0r")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk",
 "speed": 12.0
 }]
@@ -53,7 +53,7 @@ script = ExtResource("1_qhqgy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=568776571]
 light_mask = 2
 sprite_frames = SubResource("SpriteFrames_3v2ag")
-animation = &"climb"
+animation = &"idle"
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=7032248]
 position = Vector2(-1, -24)
@@ -61,9 +61,11 @@ range_item_cull_mask = 2
 texture = SubResource("GradientTexture2D_qlg0r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1758622551]
+visible = false
 shape = SubResource("CapsuleShape2D_3vyb7")
 
 [node name="HeadRay" type="RayCast2D" parent="." unique_id=605812503]
+visible = false
 position = Vector2(0, -35)
 target_position = Vector2(0, -50)
 collision_mask = 4
