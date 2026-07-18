@@ -75,3 +75,6 @@ collide_with_bodies = false
 
 [node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=727357295]
 current = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1995101664]
+zoom = Vector2(2, 2)
